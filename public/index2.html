@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ปรึกษาสัตวแพทย์ฟรี</title>
+    <link rel="icon" type="image/png" href="petpaw.png">
+    <!-- เรียกใช้ Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" src="custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.20/css/uikit.css">
+    <style>
+        a, h1, h2, .h2{
+            font-family: 'Kanit', sans-serif !important;
+            line-height: 1.6em;
+        }
+        a{
+            font-size: 1.4em;
+        }
+        label{
+            font-size: 1.6em;
+            display: block;
+        }
+        .error-border {
+            border-color: red !important;
+        }
+        #overlay {
+        background: #ffffff;
+        color: #666666;
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        z-index: 5000;
+        top: 0;
+        left: 0;
+        float: left;
+        text-align: center;
+        padding-top: 4%;
+        opacity: .80;
+        }
+        .spinner {
+            margin: 0 auto;
+            height: 64px;
+            width: 64px;
+            animation: rotate 0.8s infinite linear;
+            border: 5px solid firebrick;
+            border-right-color: transparent;
+            border-radius: 50%;
+        }
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        @font-face {
+            font-family: 'FC Iconic Regular';
+            src: url('FC-Iconic/FC Iconic Regular.ttf') format('truetype');
+            /* You may need additional format declarations depending on your font file */
+        }
+        body {
+            font-family: 'FC Iconic Regular', sans-serif;
+        }
+
+        /* The customcheck */
+        .customcheck {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Hide the browser's default checkbox */
+        .customcheck input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* Create a custom checkbox */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 22px;
+            width: 22px;
+            background-color: #eee;
+            border-radius: 5px;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .customcheck:hover input ~ .checkmark {
+            background-color: #ccc;
+        }
+
+        /* When the checkbox is checked, add a blue background */
+        .customcheck input:checked ~ .checkmark {
+            background-color: #B37B38;
+            border-radius: 5px;
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .customcheck input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .customcheck .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        .swal2-modal {
+            height: 80%;
+        }
+    </style>
+</head>
+<body>
+    <div id="overlay" style="display:none;">
+        <div class="spinner"></div>
+        <br/>
+        Loading...
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <b style="font-size: 22px;">ปรึกษาสัตวแพทย์ฟรี</b>
+                    </div>
+                    <div class="card-body">
+
+                            <div style="text-align: center;">
+                                <b style="font-size: 18px;color: #B37B38;">กรุณากรอกข้อมูลน้องแมวของคุณเพียงเล็กน้อย</b><br>
+                                <b style="font-size: 22px;color: #B37B38;">เพื่อช่วยให้สัตวแพทย์ทราบข้อมูลเบื้องต้น</b>
+                            </div>
+                            <b style="font-size: 22px;">2. ข้อมูลติดต่อกลับและสถานที่ตั้ง</b>
+
+                            <div class="mb-3">
+                                <label for="province" class="form-label">จังหวัด</label>
+                                <select class="form-control" id="province" onchange="getAmphur(event.target.value)">
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="amphoe" class="form-label">อำเภอ / เขต</label>
+                                <select class="form-control" id="amphoe" onchange="getThumbon(event.target.value)">
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="district" class="form-label">ตำบล / แขวง</label>
+                                <select class="form-control" id="district" onchange="getZipCode(event.target.value)">
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="zipcode" class="form-label">รหัสไปรษณีย์</label>
+                                <input type="input" class="form-control" id="zipcode" placeholder="รหัสไปรษณีย์" onblur="addOrRemoveClassIsInvalid(this)">
+                            </div>
+                            <div class="mb-3" style="margin-top: 10px;">
+                                <label for="addressDetail" class="form-label">รายละเอียดที่อยู่</label>
+                                <div class="input-group mb-2">
+                                    <input type="input" class="form-control" id="addressDetail" placeholder="บ้านเลขที่ ซอย หมู่ ถนน" onkeyup="addressDetailText(this,100)">
+                                    <div class="input-group-prepend">
+                                      <div id="addressDetailText" class="input-group-text">0/100</div>
+                                    </div>
+                                    <div id="addressDetailTextInvalid" class="invalid-feedback">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3" style="margin-top: 10px;">
+                                <label for="ownerName" class="form-label">ชื่อเจ้าของ</label>
+                                <div class="input-group mb-2">
+                                    <input type="input" class="form-control" id="ownerName" placeholder="ชื่อเจ้าของ" onkeyup="ownerNameText(this,100)">
+                                    <div class="input-group-prepend">
+                                      <div id="ownerNameText" class="input-group-text">0/100</div>
+                                    </div>
+                                    <div id="ownerNameTextInvalid" class="invalid-feedback">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3" style="margin-top: 10px;">
+                                <label for="phoneNumber" class="form-label">เบอรโทรเจ้าของ</label>
+                                <div class="input-group mb-2">
+                                    <input type="input" class="form-control" id="phoneNumber" placeholder="เบอรโทรเจ้าของ" onkeyup="phoneNumberText(this,100)">
+                                    <div class="input-group-prepend">
+                                      <div id="phoneNumberText" class="input-group-text">0/100</div>
+                                    </div>
+                                    <div id="phoneNumberTextInvalid" class="invalid-feedback">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3" style="margin-top: 10px;">
+                                <label for="email" class="form-label">อีเมลเจ้าของ</label>
+                                <div class="input-group mb-2">
+                                    <input type="input" class="form-control" id="email" placeholder="อีเมลเจ้าของ" onkeyup="emailText(this,100)">
+                                    <div class="input-group-prepend">
+                                      <div id="emailText" class="input-group-text">0/100</div>
+                                    </div>
+                                    <div id="emailTextInvalid" class="invalid-feedback">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3" style="margin-top: 10px;">
+                                <label class="customcheck">ฉันยินยอมให้ส่งข้อมูลไปโรงพยาบาลในเครือเพื่อให้ติดต่อกลับ <a style="font-family: 'FC Iconic Regular', sans-serif !important;font-size: 16px;" href="javascript:void(0)" onclick="openConsent()">ข้อมูลเพิ่มเติม</a>
+                                    <input type="checkbox" id="consent" onclick="clickConsent()">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <div id="consentInvalid" style="display: none;color: #dc3545;font-size: 80%">
+                                    กรุณากดยินยอม เพื่อรับการช่วยเหลือที่ดีที่สุดจากสัตวแพทย์
+                                </div>
+                            </div>
+
+                            
+                            
+                            <div class="d-grid gap-2">
+                                <button id="buttonSubmit" style="background-color: #D3AD80;color: white;width: 100%;" class="btn" type="button" onclick="validateValue()">ส่งคำขอนัดปรึกษาสัตวแพทย์</button>
+                            </div><br>
+
+                            <div style="text-align: center;">
+                                <b style="font-size: 18px;color: #B37B38;">เมื่อส่งคำขอนัดปรึกษาสัตวแพทย์เรียบร้อยแล้ว</b><br>
+                                <b style="font-size: 18px;color: #B37B38;">กรุณารอการติดต่อกลับจากเรา</b>
+                            </div><br>
+                            
+                            <div style="text-align: center;">
+                                <b style="font-size: 18px;color: #40C1AC;">powered by</b>
+                                <img src="petpaw.png">
+                                <b style="font-size: 18px;color: #40C1AC;">PetPaw</b>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+    <script src="liff-config.js"></script>
+    <script src="index2.js?cache=202401212147"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+</html>
