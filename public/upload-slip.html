@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบสะสมสิทธิ์</title>
+    <link rel="icon" type="image/x-icon" href="cat.ico">
+    <!-- เรียกใช้ Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" src="custom.css">
+    <style>
+        .error-border {
+            border-color: red !important;
+        }
+        label{
+            font-size: 1.6em;
+            display: block;
+        }
+        #overlay {
+        background: #ffffff;
+        color: #666666;
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        z-index: 5000;
+        top: 0;
+        left: 0;
+        float: left;
+        text-align: center;
+        padding-top: 4%;
+        opacity: .80;
+        }
+        .spinner {
+            margin: 0 auto;
+            height: 64px;
+            width: 64px;
+            animation: rotate 0.8s infinite linear;
+            border: 5px solid firebrick;
+            border-right-color: transparent;
+            border-radius: 50%;
+        }
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        @font-face {
+            font-family: 'FC Iconic Regular';
+            src: url('FC-Iconic/FC Iconic Regular.ttf') format('truetype');
+            /* You may need additional format declarations depending on your font file */
+        }
+        body {
+            font-family: 'FC Iconic Regular', sans-serif;
+        }
+
+        /* The customcheck */
+        .customcheck {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Hide the browser's default checkbox */
+        .customcheck input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* Create a custom checkbox */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 22px;
+            width: 22px;
+            background-color: #eee;
+            border-radius: 5px;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .customcheck:hover input ~ .checkmark {
+            background-color: #ccc;
+        }
+
+        /* When the checkbox is checked, add a blue background */
+        .customcheck input:checked ~ .checkmark {
+            background-color: #B37B38;
+            border-radius: 5px;
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .customcheck input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .customcheck .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        .swal2-modal {
+            height: 80%;
+        }
+
+.tabbar-section {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+    left: 0;
+}
+
+.tabbar-section .tab_item {
+    overflow: hidden;
+    width: 50%;
+    float: left;
+    text-align: center;
+    cursor: pointer;
+    background-color: white;
+}
+
+.tabbar-section .tab_item_active {
+    overflow: hidden;
+    width: 50%;
+    float: left;
+    text-align: center;
+    cursor: pointer;
+    background-color: #B37B38;
+    color: white;
+}
+
+.tabbar-section .tab_slip {
+    background: url("icon/slip.png") no-repeat center center;
+    background-size: contain;
+}
+
+.tabbar-section .tab_reward {
+    background: url("icon/reward.png") no-repeat center center;
+    background-size: contain;
+}
+
+.tabbar-section .tab_icon {
+    width: 40px;
+    height: 50px;
+    margin: 0 auto;
+}
+
+    </style>
+</head>
+<body>
+    <div id="overlay" style="display:none;">
+        <div class="spinner"></div>
+        <br/>
+        Loading...
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <b style="font-size: 22px;">อัปโหลดสลิป</b>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div style="text-align: center;">
+                                <b style="font-size: 18px;color: #B37B38;">อัปโหลดสลิปเพื่อใช้ในการสะสมสิทธิ์</b>
+                            </div>
+                            
+                            <div class="mb-3" style="margin-top: 10px;">
+                                <div class="mb-4 d-flex justify-content-center">
+                                    <img id="selectedImage1" src="icon/image.png" 
+                                    alt="example placeholder" />
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <div class="btn btn-primary btn-rounded">
+                                        <label class="form-label text-white m-1" for="customFile1">เลือกสลิปที่1</label>
+                                        <input type="file" class="form-control d-none" id="customFile1" onchange="displaySelectedImage(event, 'selectedImage1')" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="mb-3" style="margin-top: 10px;">
+                                <div class="mb-4 d-flex justify-content-center">
+                                    <img id="selectedImage2" src="icon/image.png" 
+                                    alt="example placeholder" />
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <div class="btn btn-primary btn-rounded">
+                                        <label class="form-label text-white m-1" for="customFile2">เลือกสลิปที่2</label>
+                                        <input type="file" class="form-control d-none" id="customFile2" onchange="displaySelectedImage(event, 'selectedImage2')" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="mb-3" style="margin-top: 10px;">
+                                <div class="mb-4 d-flex justify-content-center">
+                                    <img id="selectedImage3" src="icon/image.png" 
+                                    alt="example placeholder" />
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <div class="btn btn-primary btn-rounded">
+                                        <label class="form-label text-white m-1" for="customFile3">เลือกสลิปที่3</label>
+                                        <input type="file" class="form-control d-none" id="customFile3" onchange="displaySelectedImage(event, 'selectedImage3')" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-grid gap-2" style="margin-bottom: 60px;">
+                                <button id="buttonSubmit" style="background-color: #D3AD80;color: white;width: 100%;" class="btn" type="button" onclick="validateUpload()">ยืนยัน</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 tabbar-section">
+                <div class="tab_item_active">
+                    <div class="tab_icon tab_slip"></div>
+                    <div class="tab_text">อัปโหลดสลิป</div>
+                </div>
+                <div class="tab_item" onclick="nextToReward()">
+                    <div class="tab_icon tab_reward"></div>
+                    <div class="tab_text">รางวัล</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+    <script src="liff-config.js?cache=202401251932"></script>
+    <script src="upload-slip.js?cache=202401261932"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+</html>

@@ -1,28 +1,20 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ปรึกษาสัตวแพทย์ฟรี</title>
-    <link rel="icon" type="image/png" href="petpaw.png">
+    <title>ระบบสะสมสิทธิ์</title>
+    <link rel="icon" type="image/x-icon" href="cat.ico">
     <!-- เรียกใช้ Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" src="custom.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.20/css/uikit.css">
     <style>
-        a, h1, h2, .h2{
-            font-family: 'Kanit', sans-serif !important;
-            line-height: 1.6em;
-        }
-        a{
-            font-size: 1.4em;
+        .error-border {
+            border-color: red !important;
         }
         label{
             font-size: 1.6em;
             display: block;
-        }
-        .error-border {
-            border-color: red !important;
         }
         #overlay {
         background: #ffffff;
@@ -145,114 +137,122 @@
     </div>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <b style="font-size: 22px;">ปรึกษาสัตวแพทย์ฟรี</b>
+                        <b style="font-size: 22px;">ลงทะเบียน</b>
                     </div>
                     <div class="card-body">
-
+                        <form>
                             <div style="text-align: center;">
-                                <b style="font-size: 18px;color: #B37B38;">กรุณากรอกข้อมูลน้องแมวของคุณเพียงเล็กน้อย</b><br>
-                                <b style="font-size: 22px;color: #B37B38;">เพื่อช่วยให้สัตวแพทย์ทราบข้อมูลเบื้องต้น</b>
+                                <b style="font-size: 18px;color: #B37B38;">กรุณากรอกข้อมูลเพื่อลงทะเบียน</b>
                             </div>
-                            <b style="font-size: 22px;">2. ข้อมูลติดต่อกลับและสถานที่ตั้ง</b>
+                            
+                            <div class="mb-3" style="margin-top: 10px;">
+                                <label for="firstName" class="form-label">ชื่อ</label>
+                                <div class="input-group mb-2">
+                                    <input type="input" class="form-control" id="firstName" placeholder="ชื่อ" onkeyup="firstNameText(this,100)">
+                                    <div class="input-group-prepend">
+                                      <div id="firstNameText" class="input-group-text">0/100</div>
+                                    </div>
+                                    <div id="firstNameTextInvalid" class="invalid-feedback">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3" style="margin-top: 10px;">
+                                <label for="lastName" class="form-label">นามสกุล</label>
+                                <div class="input-group mb-2">
+                                    <input type="input" class="form-control" id="lastName" placeholder="นามสกุล" onkeyup="lastNameText(this,100)">
+                                    <div class="input-group-prepend">
+                                      <div id="lastNameText" class="input-group-text">0/100</div>
+                                    </div>
+                                    <div id="lastNameTextInvalid" class="invalid-feedback">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="gender" class="form-label">เพศ</label>
+                                <select class="form-control" id="gender" onchange="validateValue()">
+                                    <option value="">-- เพศ --</option>
+                                    <option value="ชาย">ชาย</option>
+                                    <option value="หญิง">หญิง</option>
+                                    <option value="ไม่ระบุ">ไม่ระบุ</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3" style="margin-top: 10px;">
+                                <label for="phoneNumber" class="form-label">เบอรโทร</label>
+                                <div class="input-group mb-2">
+                                    <input type="input" class="form-control" id="phoneNumber" placeholder="เบอรโทร" onkeyup="phoneNumberText(this,100)">
+                                    <div class="input-group-prepend">
+                                      <div id="phoneNumberText" class="input-group-text">0/100</div>
+                                    </div>
+                                    <div id="phoneNumberTextInvalid" class="invalid-feedback">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3" style="margin-top: 10px;">
+                                <label for="email" class="form-label">อีเมล</label>
+                                <div class="input-group mb-2">
+                                    <input type="input" class="form-control" id="email" placeholder="อีเมล" onkeyup="emailText(this,100)">
+                                    <div class="input-group-prepend">
+                                      <div id="emailText" class="input-group-text">0/100</div>
+                                    </div>
+                                    <div id="emailTextInvalid" class="invalid-feedback">
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="mb-3">
                                 <label for="province" class="form-label">จังหวัด</label>
                                 <select class="form-control" id="province" onchange="getAmphur(event.target.value)">
                                 </select>
                             </div>
+
                             <div class="mb-3">
                                 <label for="amphoe" class="form-label">อำเภอ / เขต</label>
                                 <select class="form-control" id="amphoe" onchange="getThumbon(event.target.value)">
                                 </select>
                             </div>
+
                             <div class="mb-3">
                                 <label for="district" class="form-label">ตำบล / แขวง</label>
                                 <select class="form-control" id="district" onchange="getZipCode(event.target.value)">
                                 </select>
                             </div>
+
                             <div class="mb-3">
                                 <label for="zipcode" class="form-label">รหัสไปรษณีย์</label>
                                 <input type="input" class="form-control" id="zipcode" placeholder="รหัสไปรษณีย์" onblur="addOrRemoveClassIsInvalid(this)">
                             </div>
-                            <div class="mb-3" style="margin-top: 10px;">
-                                <label for="addressDetail" class="form-label">รายละเอียดที่อยู่</label>
+
+                            <div class="mb-3">
+                                <label for="petTotal" class="form-label">จำนวนแมวที่เลี้ยง</label>
                                 <div class="input-group mb-2">
-                                    <input type="input" class="form-control" id="addressDetail" placeholder="บ้านเลขที่ ซอย หมู่ ถนน" onkeyup="addressDetailText(this,100)">
-                                    <div class="input-group-prepend">
-                                      <div id="addressDetailText" class="input-group-text">0/100</div>
-                                    </div>
-                                    <div id="addressDetailTextInvalid" class="invalid-feedback">
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-3" style="margin-top: 10px;">
-                                <label for="ownerName" class="form-label">ชื่อเจ้าของ</label>
-                                <div class="input-group mb-2">
-                                    <input type="input" class="form-control" id="ownerName" placeholder="ชื่อเจ้าของ" onkeyup="ownerNameText(this,100)">
-                                    <div class="input-group-prepend">
-                                      <div id="ownerNameText" class="input-group-text">0/100</div>
-                                    </div>
-                                    <div id="ownerNameTextInvalid" class="invalid-feedback">
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-3" style="margin-top: 10px;">
-                                <label for="phoneNumber" class="form-label">เบอรโทรเจ้าของ</label>
-                                <div class="input-group mb-2">
-                                    <input type="input" class="form-control" id="phoneNumber" placeholder="เบอรโทรเจ้าของ" onkeyup="phoneNumberText(this,100)">
-                                    <div class="input-group-prepend">
-                                      <div id="phoneNumberText" class="input-group-text">0/100</div>
-                                    </div>
-                                    <div id="phoneNumberTextInvalid" class="invalid-feedback">
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-3" style="margin-top: 10px;">
-                                <label for="email" class="form-label">อีเมลเจ้าของ</label>
-                                <div class="input-group mb-2">
-                                    <input type="input" class="form-control" id="email" placeholder="อีเมลเจ้าของ" onkeyup="emailText(this,100)">
-                                    <div class="input-group-prepend">
-                                      <div id="emailText" class="input-group-text">0/100</div>
-                                    </div>
-                                    <div id="emailTextInvalid" class="invalid-feedback">
-                                        
+                                    <input type="number" class="form-control" id="petTotal" placeholder="จำนวนแมวที่เลี้ยง">
+                                    <div id="petTotalTextInvalid" class="invalid-feedback">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="mb-3" style="margin-top: 10px;">
-                                <label class="customcheck">ฉันยินยอมให้ส่งข้อมูลไปโรงพยาบาลในเครือเพื่อให้ติดต่อกลับ <a style="font-family: 'FC Iconic Regular', sans-serif !important;font-size: 16px;" href="javascript:void(0)" onclick="openConsent()">ข้อมูลเพิ่มเติม</a>
+                                <label class="customcheck">ฉันยินยอมให้ระบบเก็บข้อมูล <a style="font-family: 'FC Iconic Regular', sans-serif !important;font-size: 16px;" href="javascript:void(0)" onclick="openConsent()">ข้อมูลเพิ่มเติม</a>
                                     <input type="checkbox" id="consent" onclick="clickConsent()">
                                     <span class="checkmark"></span>
                                 </label>
                                 <div id="consentInvalid" style="display: none;color: #dc3545;font-size: 80%">
-                                    กรุณากดยินยอม เพื่อรับการช่วยเหลือที่ดีที่สุดจากสัตวแพทย์
+                                    กรุณากดยินยอม
                                 </div>
                             </div>
 
-                            
-                            
                             <div class="d-grid gap-2">
-                                <button id="buttonSubmit" style="background-color: #D3AD80;color: white;width: 100%;" class="btn" type="button" onclick="validateValue()">ส่งคำขอนัดปรึกษาสัตวแพทย์</button>
-                            </div><br>
-
-                            <div style="text-align: center;">
-                                <b style="font-size: 18px;color: #B37B38;">เมื่อส่งคำขอนัดปรึกษาสัตวแพทย์เรียบร้อยแล้ว</b><br>
-                                <b style="font-size: 18px;color: #B37B38;">กรุณารอการติดต่อกลับจากเรา</b>
-                            </div><br>
-                            
-                            <div style="text-align: center;">
-                                <b style="font-size: 18px;color: #40C1AC;">powered by</b>
-                                <img src="petpaw.png">
-                                <b style="font-size: 18px;color: #40C1AC;">PetPaw</b>
+                                <button id="buttonSubmit" style="background-color: #D3AD80;color: white;width: 100%;" class="btn" type="button" onclick="validateValue()">ลงทะเบียน</button>
                             </div>
 
+                        </form>
                     </div>
                 </div>
             </div>
@@ -260,8 +260,8 @@
     </div>
 
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
-    <script src="liff-config.js"></script>
-    <script src="index2.js?cache=202401212147"></script>
+    <script src="liff-config.js?cache=202401251932"></script>
+    <script src="register.js?cache=202401251932"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>

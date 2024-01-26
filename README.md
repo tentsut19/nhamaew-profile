@@ -1,3 +1,5 @@
 firebase deploy
 
-git clone https://thanarat_s@bitbucket.org/thanarat_s/nhamaew-petpaw-liff.git
+git clone https://thanarat_s@bitbucket.org/thanarat_s/nhamaew-profile.git
+
+https://mdbootstrap.com/docs/standard/extended/file-input-image/
