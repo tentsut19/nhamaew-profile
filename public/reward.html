@@ -138,7 +138,7 @@
 
 .tabbar-section .tab_item {
     overflow: hidden;
-    width: 50%;
+    width: 33.33%;
     float: left;
     text-align: center;
     cursor: pointer;
@@ -147,10 +147,9 @@
 
 .tabbar-section .tab_item_active {
     overflow: hidden;
-    width: 50%;
+    width: 33.33%;
     float: left;
     text-align: center;
-    cursor: pointer;
     background-color: #B37B38;
     color: white;
 }
@@ -162,6 +161,11 @@
 
 .tabbar-section .tab_reward {
     background: url("icon/reward.png") no-repeat center center;
+    background-size: contain;
+}
+
+.tabbar-section .tab_profiles {
+    background: url("icon/profiles.png") no-repeat center center;
     background-size: contain;
 }
 
@@ -187,36 +191,25 @@
                         <b style="font-size: 22px;">รางวัล</b>
                     </div>
                     <div class="card-body">
-                        <form>
-                            <div style="text-align: center;">
-                                <b style="font-size: 18px;color: #B37B38;">อัปโหลดสลิปเพื่อใช้ในการสะสมสิทธิ์</b>
-                            </div>
-                            
-                            <div class="mb-3" style="margin-top: 10px;">
-                                <label for="fileInput1" class="form-label">อัปโหลดสลิป1</label>
-                                <div class="input-group mb-2">
-                                    <input type="file" class="form-control" id="fileInput1" placeholder="อัปโหลดสลิป1">
-                                </div>
-                            </div>
-
-                            <div class="mb-3" style="margin-top: 10px;">
-                                <label for="fileInput2" class="form-label">อัปโหลดสลิป2</label>
-                                <div class="input-group mb-2">
-                                    <input type="file" class="form-control" id="fileInput2" placeholder="อัปโหลดสลิป2">
-                                </div>
-                            </div>
-
-                            <div class="d-grid gap-2">
-                                <button id="buttonSubmit" style="background-color: #D3AD80;color: white;width: 100%;" class="btn" type="button" onclick="validateValue()">ยืนยัน</button>
-                            </div>
-
-                        </form>
+                        <div style="text-align: center;">
+                            <b style="font-size: 18px;color: #B37B38;">รางวัลที่1</b>
+                        </div>
+                        <div class="mb-12" style="margin-top: 10px;">
+                            <img src="pic/reward.jpg" style="max-width:100%;height:auto;" alt="reward placeholder" />
+                        </div>
+                        <hr>
+                        <div style="text-align: center;">
+                            <b style="font-size: 18px;color: #B37B38;">รางวัลที่2</b>
+                        </div>
+                        <div class="mb-12" style="margin-top: 10px;">
+                            <img src="pic/reward2.jpg" style="max-width:100%;height:auto;" alt="reward placeholder" />
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-12 tabbar-section">
-                <div class="tab_item" onclick="nextToUploadSlip()">
+                <div class="tab_item" onclick="nextTo('upload-slip.html')">
                     <div class="tab_icon tab_slip"></div>
                     <div class="tab_text">อัปโหลดสลิป</div>
                 </div>
@@ -224,14 +217,18 @@
                     <div class="tab_icon tab_reward"></div>
                     <div class="tab_text">รางวัล</div>
                 </div>
+                <div class="tab_item" onclick="nextTo('profile.html')">
+                    <div class="tab_icon tab_profiles"></div>
+                    <div class="tab_text">ข้อมูลส่วนตัว</div>
+                </div>
             </div>
 
         </div>
     </div>
 
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
-    <script src="liff-config.js?cache=202401251932"></script>
-    <script src="reward.js?cache=202401251932"></script>
+    <script src="liff-config.js?cache=202401282138"></script>
+    <script src="reward.js?cache=202401282138"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>

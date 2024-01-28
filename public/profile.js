@@ -22,6 +22,202 @@ async function initializeLiff() {
         return;
     }
 
+    getProvince();
+    getLineProfile();
+}
+
+async function getLineProfile(){
+    try {
+        if (!liff.isLoggedIn() && PROD) {
+            const destinationUrl = window.location.href;
+            liff.login({redirectUri: destinationUrl});
+            return;
+        }
+
+        var profile
+        if (PROD) {
+            profile = await liff.getProfile();
+        }else{
+            profile = {
+                userId:'U696407e9324efff51ab1652b92253add',
+                displayName:'Tent365💰💰',
+                statusMessage:'อย่าพยายาม ทำในสิ่งที่เป็นไปไม่ได้',
+                pictureUrl:'https://profile.line-scdn.net/0h3-mBgel0bAJAO3l34VQSfTBrb2hjSjUQPw0jNnNoYWZ9CX8DaQoqMCY7MmUpDC9ROw5xYHE6YWFMKBtkXm2QNkcLMTN8CCtXa18i4w'
+            }
+        }
+
+        var firstName = document.getElementById("firstName");
+        var lastName = document.getElementById("lastName");
+        var gender = document.getElementById("gender");
+        var phoneNumber = document.getElementById("phoneNumber");
+        var email = document.getElementById("email");
+        var district = document.getElementById("district");
+        var amphoe = document.getElementById("amphoe");
+        var province = document.getElementById("province");
+        var zipcode = document.getElementById("zipcode");
+        var petTotal = document.getElementById("petTotal");
+        var pointText = document.getElementById("pointText");
+
+        document.getElementById("overlay").style.display = "block";
+
+        const response = await fetch(URL_GET_LINE_PROFILE+profile.userId, {
+            method: 'GET'
+        });
+
+        document.getElementById("overlay").style.display = "none";
+        console.log('response:', response);
+        if(response.status == 200){
+            const data = await response.json();
+            console.log('API Response:', data);
+
+            firstName.value = data.firstName
+            lastName.value = data.lastName
+            gender.value = data.gender
+            phoneNumber.value = data.phoneNumber
+            email.value = data.email
+            province.value = data.province
+            await getAmphur(data.province);
+            district.value = data.district
+
+
+            zipcode.value = data.zipcode
+            petTotal.value = data.petTotal
+
+            pointText.textContent = "คุณมี "+data.point+" สิทธิ์ หมดอายุ 31 ธ.ค. 2567";
+
+        }else{
+            swalError('เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง','');
+        }
+    } catch (error) {
+        document.getElementById("overlay").style.display = "none";
+        swalError('เกิดข้อผิดพลาด','');
+        console.error('API Error:', error);
+    }
+}
+
+var countryJson;
+function getProvince() {
+    var provinceElement = document.getElementById("province");
+    var option = document.createElement("option");
+    option.text = "--- จังหวัด ---";
+    option.value = "";
+    provinceElement.add(option);
+
+    var amphoeElement = document.getElementById("amphoe");
+    var option = document.createElement("option");
+    option.text = "--- อำเภอ / เขต ---";
+    option.value = "";
+    amphoeElement.add(option);
+
+    var districtElement = document.getElementById("district");
+    var option = document.createElement("option");
+    option.text = "--- ตำบล / แขวง ---";
+    option.value = "";
+    districtElement.add(option);
+
+    fetch('./data.json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      this.countryJson = data;
+
+      this.countryJson.forEach(element => {
+        // console.log(element);
+        var option1 = document.createElement("option");
+        option1.text = element[0];
+        option1.value = element[0];
+        provinceElement.add(option1);
+      });
+
+    })
+    .catch(error => {
+      console.error('There has been a problem with your fetch operation:', error);
+    });
+}
+
+var amphurJson;
+async function getAmphur(e) {
+    // console.log(e);
+    // console.log(this.countryJson);
+    var amphoeElement = document.getElementById("amphoe");
+    while (amphoeElement.options.length > 0) {
+        amphoeElement.remove(0);
+    }
+    var option = document.createElement("option");
+    option.text = "--- อำเภอ / เขต ---";
+    option.value = "";
+    amphoeElement.add(option);
+
+    var districtElement = document.getElementById("district");
+    while (districtElement.options.length > 0) {
+        districtElement.remove(0);
+    }
+    var option = document.createElement("option");
+    option.text = "--- ตำบล / แขวง ---";
+    option.value = "";
+    districtElement.add(option);
+
+    document.getElementById("zipcode").value = "";
+
+    this.countryJson.forEach(element => {
+        if(element[0] == e){
+            console.log(element[1]);
+            this.amphurJson = element[1];
+
+            this.amphurJson.forEach(element => {
+                // console.log(element);
+                var option1 = document.createElement("option");
+                option1.text = element[0];
+                option1.value = element[0];
+                amphoeElement.add(option1);
+            });
+        }
+    });
+
+}
+
+var thumbonJson;
+function getThumbon(e) {
+    var districtElement = document.getElementById("district");
+    while (districtElement.options.length > 0) {
+        districtElement.remove(0);
+    }
+    var option = document.createElement("option");
+    option.text = "--- ตำบล / แขวง ---";
+    option.value = "";
+    districtElement.add(option);
+
+    document.getElementById("zipcode").value = "";
+
+    this.amphurJson.forEach(element => {
+        if(element[0] == e){
+            console.log(element[1]);
+            this.thumbonJson = element[1];
+
+            this.thumbonJson.forEach(element => {
+                // console.log(element);
+                var option1 = document.createElement("option");
+                option1.text = element[0];
+                option1.value = element[0];
+                districtElement.add(option1);
+            });
+        }
+    });
+
+}
+
+function getZipCode(e) {
+    this.thumbonJson.forEach(element => {
+        if(element[0] == e){
+            console.log(element[1]);
+            document.getElementById("zipcode").value = element[1];
+        }
+    });
 }
 
 function validateValue(){
@@ -48,7 +244,6 @@ function validateValue(){
     valid = valid && addOrRemoveClassIsInvalid(district);
     valid = valid && addOrRemoveClassIsInvalid(zipcode);
     valid = valid && addOrRemoveClassIsInvalid(petTotal);
-    valid = valid && validateConsent(consent);
 
     if(!valid){
         // Swal.fire({
@@ -170,21 +365,6 @@ function emailText(ele,limit){
     }
 }
 
-function clickConsent(){
-    var consent = document.getElementById("consent");
-    validateConsent(consent);
-}
-
-function validateConsent(ele){
-    if(ele.checked){
-        document.getElementById("consentInvalid").style.display = 'none';
-        return true;
-    }else{
-        document.getElementById("consentInvalid").style.display = '';
-        return false;
-    }
-}
-
 function openConsent(){
     Swal.fire({
         // title: "ข้อตกลง Consent การให้ข้อมูลส่วนบุคคล",
@@ -198,6 +378,7 @@ function openConsent(){
 function closeSwal(){
     Swal.clickConfirm();
 }
+
 
 function openDialogConfirm(){
     Swal.fire({
@@ -217,6 +398,28 @@ function openDialogConfirm(){
     })
 }
 
+function swalError(title,text){
+    Swal.fire({
+        title: title,
+        text: text,
+        icon: 'error',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'ตกลง'
+      }).then((result) => {
+        
+      })
+}
+
+function swalSuccess(title,text){
+    Swal.fire({
+        title: title,
+        text: text,
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500
+      })
+}
+
 async function submit(){
     try {
         if (!liff.isLoggedIn() && PROD) {
@@ -230,10 +433,10 @@ async function submit(){
             profile = await liff.getProfile();
         }else{
             profile = {
-                userId:'test1',
-                displayName:'test1',
-                statusMessage:'test1',
-                pictureUrl:'test1'
+                userId:'U696407e9324efff51ab1652b92253add',
+                displayName:'Tent365💰💰',
+                statusMessage:'อย่าพยายาม ทำในสิ่งที่เป็นไปไม่ได้',
+                pictureUrl:'https://profile.line-scdn.net/0h3-mBgel0bAJAO3l34VQSfTBrb2hjSjUQPw0jNnNoYWZ9CX8DaQoqMCY7MmUpDC9ROw5xYHE6YWFMKBtkXm2QNkcLMTN8CCtXa18i4w'
             }
         }
 
@@ -252,7 +455,7 @@ async function submit(){
 
         document.getElementById("overlay").style.display = "block";
 
-        const response = await fetch(URL_REGISTER_USER, {
+        const response = await fetch(URL_UPDATE_LINE_USER, {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer YOUR_ACCESS_TOKEN',
@@ -277,16 +480,17 @@ async function submit(){
         });
 
         document.getElementById("overlay").style.display = "none";
+        document.getElementById("buttonSubmit").disabled = false;
         console.log('response:', response);
         if(response.status == 200){
             const data = await response.json();
             console.log('API Response:', data);
-            liff.closeWindow();
+            swalSuccess('อัปเดตข้อมูลส่วนตัวเรียบร้อย','');
         }else{
-            alert('เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง');
+            swalError('เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง','');
         }
     } catch (error) {
-        alert('เกิดข้อผิดพลาด');
+        swalError('เกิดข้อผิดพลาด','');
         console.error('API Error:', error);
     }
 }

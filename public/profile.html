@@ -127,6 +127,59 @@
         .swal2-modal {
             height: 80%;
         }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 120px;
+        }
+
+.tabbar-section {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+    left: 0;
+}
+
+.tabbar-section .tab_item {
+    overflow: hidden;
+    width: 33.33%;
+    float: left;
+    text-align: center;
+    cursor: pointer;
+    background-color: white;
+}
+
+.tabbar-section .tab_item_active {
+    overflow: hidden;
+    width: 33.33%;
+    float: left;
+    text-align: center;
+    background-color: #B37B38;
+    color: white;
+}
+
+.tabbar-section .tab_slip {
+    background: url("icon/slip.png") no-repeat center center;
+    background-size: contain;
+}
+
+.tabbar-section .tab_reward {
+    background: url("icon/reward.png") no-repeat center center;
+    background-size: contain;
+}
+
+.tabbar-section .tab_profiles {
+    background: url("icon/profiles.png") no-repeat center center;
+    background-size: contain;
+}
+
+.tabbar-section .tab_icon {
+    width: 40px;
+    height: 50px;
+    margin: 0 auto;
+}
     </style>
 </head>
 <body>
@@ -140,12 +193,17 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <b style="font-size: 22px;">ลงทะเบียน</b>
+                        <b style="font-size: 22px;">ข้อมูลส่วนตัว</b>
                     </div>
                     <div class="card-body">
                         <form>
                             <div style="text-align: center;">
-                                <b style="font-size: 18px;color: #B37B38;">กรุณากรอกข้อมูลเพื่อลงทะเบียน</b>
+                                <b id="pointText" style="font-size: 20px;color: #B37B38;">คุณมี 0 สิทธิ์ หมดอายุ 31 ธ.ค. 2567</b>
+                            </div>
+                            
+                            <div class="mb-3" style="margin-top: 10px;text-align:center">
+                                <img src="https://profile.line-scdn.net/0h3-mBkcw3bAJAO3l34VQSfTBrb2hjSjUQPw0jNnNoYWZ9CX8DaQoqMCY7MmUpDC9ROw5xYHE6YWFMKBtkXm2QNkcLMjZ5DihXaVkm4w" 
+                                class="avatar" alt="reward placeholder" />
                             </div>
                             
                             <div class="mb-3" style="margin-top: 10px;">
@@ -238,22 +296,26 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3" style="margin-top: 10px;">
-                                <label class="customcheck">ฉันยินยอมให้ระบบเก็บข้อมูล <a style="font-family: 'FC Iconic Regular', sans-serif !important;font-size: 16px;" href="javascript:void(0)" onclick="openConsent()">ข้อมูลเพิ่มเติม</a>
-                                    <input type="checkbox" id="consent" onclick="clickConsent()">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <div id="consentInvalid" style="display: none;color: #dc3545;font-size: 80%">
-                                    กรุณากดยินยอม
-                                </div>
-                            </div>
-
-                            <div class="d-grid gap-2">
-                                <button id="buttonSubmit" style="background-color: #D3AD80;color: white;width: 100%;" class="btn" type="button" onclick="validateValue()">ลงทะเบียน</button>
+                            <div class="d-grid gap-2" style="margin-bottom: 60px;">
+                                <button id="buttonSubmit" style="background-color: #D3AD80;color: white;width: 100%;" class="btn" type="button" onclick="validateValue()">บันทึก</button>
                             </div>
 
                         </form>
                     </div>
+                </div>
+            </div>
+            <div class="col-md-12 tabbar-section">
+                <div class="tab_item" onclick="nextTo('upload-slip.html')">
+                    <div class="tab_icon tab_slip"></div>
+                    <div class="tab_text">อัปโหลดสลิป</div>
+                </div>
+                <div class="tab_item" onclick="nextTo('reward.html')">
+                    <div class="tab_icon tab_reward"></div>
+                    <div class="tab_text">รางวัล</div>
+                </div>
+                <div class="tab_item_active">
+                    <div class="tab_icon tab_profiles"></div>
+                    <div class="tab_text">ข้อมูลส่วนตัว</div>
                 </div>
             </div>
         </div>
@@ -261,7 +323,7 @@
 
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
     <script src="liff-config.js?cache=202401282138"></script>
-    <script src="register.js?cache=202401282138"></script>
+    <script src="profile.js?cache=202401282138"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>

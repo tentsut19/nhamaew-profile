@@ -64,11 +64,6 @@ function validateUpload(){
     openDialogConfirm();
 }
 
-function nextToReward(){
-    var url = "reward.html";
-    window.location.href = url;
-}
-
 function openDialogConfirm(){
     Swal.fire({
     //   title: 'ยืนยันการส่งข้อมูลใช่ไหม?',
@@ -122,7 +117,7 @@ async function submit(){
             profile = await liff.getProfile();
         }else{
             profile = {
-                userId:'test1',
+                userId:'U696407e9324efff51ab1652b92253add',
                 displayName:'test1',
                 statusMessage:'test1',
                 pictureUrl:'test1'
