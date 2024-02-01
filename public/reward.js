@@ -230,10 +230,10 @@ async function submit(){
             profile = await liff.getProfile();
         }else{
             profile = {
-                userId:'test1',
-                displayName:'test1',
-                statusMessage:'test1',
-                pictureUrl:'test1'
+                userId:'U696407e9324efff51ab1652b92253add',
+                displayName:'Tent365💰💰',
+                statusMessage:'อย่าพยายาม ทำในสิ่งที่เป็นไปไม่ได้',
+                pictureUrl:'https://profile.line-scdn.net/0h3-mBgel0bAJAO3l34VQSfTBrb2hjSjUQPw0jNnNoYWZ9CX8DaQoqMCY7MmUpDC9ROw5xYHE6YWFMKBtkXm2QNkcLMTN8CCtXa18i4w'
             }
         }
 

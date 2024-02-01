@@ -76,15 +76,19 @@ async function getLineProfile(){
             phoneNumber.value = data.phoneNumber
             email.value = data.email
             province.value = data.province
+            console.log('before getAmphur');
             await getAmphur(data.province);
+            console.log('after getAmphur');
+            amphoe.value = data.amphoe
+            await getThumbon(data.amphoe);
             district.value = data.district
-
 
             zipcode.value = data.zipcode
             petTotal.value = data.petTotal
 
             pointText.textContent = "คุณมี "+data.point+" สิทธิ์ หมดอายุ 31 ธ.ค. 2567";
 
+            validateValue(true);
         }else{
             swalError('เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง','');
         }
@@ -142,7 +146,7 @@ function getProvince() {
 
 var amphurJson;
 async function getAmphur(e) {
-    // console.log(e);
+    console.log(e);
     // console.log(this.countryJson);
     var amphoeElement = document.getElementById("amphoe");
     while (amphoeElement.options.length > 0) {
@@ -182,7 +186,7 @@ async function getAmphur(e) {
 }
 
 var thumbonJson;
-function getThumbon(e) {
+async function getThumbon(e) {
     var districtElement = document.getElementById("district");
     while (districtElement.options.length > 0) {
         districtElement.remove(0);
@@ -220,7 +224,7 @@ function getZipCode(e) {
     });
 }
 
-function validateValue(){
+function validateValue(isInit){
     var firstName = document.getElementById("firstName");
     var lastName = document.getElementById("lastName");
     var gender = document.getElementById("gender");
@@ -231,7 +235,6 @@ function validateValue(){
     var province = document.getElementById("province");
     var zipcode = document.getElementById("zipcode");
     var petTotal = document.getElementById("petTotal");
-    var consent = document.getElementById("consent");
 
     var valid = true;
     valid = valid && firstNameText(firstName,100);
@@ -257,7 +260,9 @@ function validateValue(){
         //   })
         return;
     }
-    openDialogConfirm();
+    if(!isInit){
+        openDialogConfirm();
+    }
 }
 
 function addOrRemoveClassIsInvalid(ele,limit){

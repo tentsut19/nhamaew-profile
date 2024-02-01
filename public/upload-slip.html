@@ -128,6 +128,12 @@
             height: 80%;
         }
 
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 120px;
+        }
+
 .tabbar-section {
     position: fixed;
     bottom: 0;
@@ -188,58 +194,230 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <b style="font-size: 22px;">อัปโหลดสลิป</b>
+                        <b style="font-size: 22px;">อัปโหลดใบเสร็จ</b>
                     </div>
                     <div class="card-body">
                         <form>
                             <div style="text-align: center;">
-                                <b style="font-size: 18px;color: #B37B38;">อัปโหลดสลิปเพื่อใช้ในการสะสมสิทธิ์</b>
+                                <b style="font-size: 22px;">เปลี่ยนใบเสร็จ</b><br><b style="font-size: 22px;color: #B37B38;">เป็นรางวัล</b><b style="font-size: 22px;"> By หน้าแมว</b>
                             </div>
-                            
-                            <div class="mb-3" style="margin-top: 10px;">
-                                <div class="mb-4 d-flex justify-content-center">
-                                    <img id="selectedImage1" src="icon/image.png" 
-                                    alt="example placeholder" />
-                                </div>
-                                <div class="d-flex justify-content-center">
-                                    <div class="btn btn-primary btn-rounded">
-                                        <label class="form-label text-white m-1" for="customFile1">เลือกสลิปที่1</label>
-                                        <input type="file" class="form-control d-none" id="customFile1" onchange="displaySelectedImage(event, 'selectedImage1')" />
+                            <div class="mb-3" style="margin-top: 10px;text-align:center">
+                                <img id="img-profile" src="icon/image.png" class="avatar" alt="reward placeholder" />
+                            </div>
+                            <div style="text-align: center;">
+                                <b style="font-size: 18px;color: #B37B38;">กรุณากรอกข้อมูลเล็กน้อยเพื่อเข้าร่วมกิจกรรมและใช้ยืนยันการรับรางวัล</b>
+                            </div>
+                            <fieldset id="originalFieldset1" class="border p-2" style="margin-top: 10px;">
+                                <legend  class="w-auto legend-header" style="text-align: left;color: #1ab196;"> ใบเสร็จที่1</legend>
+                                <div class="mb-3" style="margin-top: 10px;">
+                                    <div class="mb-4 d-flex justify-content-center">
+                                        <img id="selectedImage11" src="icon/image.png" 
+                                        alt="example placeholder" />
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="btn btn-primary btn-rounded">
+                                            <label class="form-label text-white m-1" for="customFile11">เลือกรูปหลักฐาน1</label>
+                                            <input type="file" class="form-control d-none" id="customFile11" onchange="displaySelectedImage(event, 'selectedImage11')" />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <hr>
-
-                            <div class="mb-3" style="margin-top: 10px;">
-                                <div class="mb-4 d-flex justify-content-center">
-                                    <img id="selectedImage2" src="icon/image.png" 
-                                    alt="example placeholder" />
-                                </div>
-                                <div class="d-flex justify-content-center">
-                                    <div class="btn btn-primary btn-rounded">
-                                        <label class="form-label text-white m-1" for="customFile2">เลือกสลิปที่2</label>
-                                        <input type="file" class="form-control d-none" id="customFile2" onchange="displaySelectedImage(event, 'selectedImage2')" />
+                                <hr>
+                                <div class="mb-3" style="margin-top: 10px;">
+                                    <div class="mb-4 d-flex justify-content-center">
+                                        <img id="selectedImage12" src="icon/image.png" 
+                                        alt="example placeholder" />
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="btn btn-primary btn-rounded">
+                                            <label class="form-label text-white m-1" for="customFile12">เลือกรูปหลักฐาน2</label>
+                                            <input type="file" class="form-control d-none" id="customFile12" onchange="displaySelectedImage(event, 'selectedImage12')" />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <hr>
-
-                            <div class="mb-3" style="margin-top: 10px;">
-                                <div class="mb-4 d-flex justify-content-center">
-                                    <img id="selectedImage3" src="icon/image.png" 
-                                    alt="example placeholder" />
-                                </div>
-                                <div class="d-flex justify-content-center">
-                                    <div class="btn btn-primary btn-rounded">
-                                        <label class="form-label text-white m-1" for="customFile3">เลือกสลิปที่3</label>
-                                        <input type="file" class="form-control d-none" id="customFile3" onchange="displaySelectedImage(event, 'selectedImage3')" />
+                                <hr>
+                                <div class="mb-3" style="margin-top: 10px;">
+                                    <div class="mb-4 d-flex justify-content-center">
+                                        <img id="selectedImage13" src="icon/image.png" 
+                                        alt="example placeholder" />
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="btn btn-primary btn-rounded">
+                                            <label class="form-label text-white m-1" for="customFile13">เลือกรูปหลักฐาน3</label>
+                                            <input type="file" class="form-control d-none" id="customFile13" onchange="displaySelectedImage(event, 'selectedImage13')" />
+                                        </div>
                                     </div>
                                 </div>
+                            </fieldset>
+                            <fieldset id="originalFieldset2" class="border p-2" style="margin-top: 10px;display: none;">
+                                <legend  class="w-auto legend-header" style="text-align: left;color: #1ab196;"> ใบเสร็จที่2</legend>
+                                <div class="mb-3" style="margin-top: 10px;">
+                                    <div class="mb-4 d-flex justify-content-center">
+                                        <img id="selectedImage21" src="icon/image.png" 
+                                        alt="example placeholder" />
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="btn btn-primary btn-rounded">
+                                            <label class="form-label text-white m-1" for="customFile21">เลือกรูปหลักฐาน1</label>
+                                            <input type="file" class="form-control d-none" id="customFile21" onchange="displaySelectedImage(event, 'selectedImage21')" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="mb-3" style="margin-top: 10px;">
+                                    <div class="mb-4 d-flex justify-content-center">
+                                        <img id="selectedImage22" src="icon/image.png" 
+                                        alt="example placeholder" />
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="btn btn-primary btn-rounded">
+                                            <label class="form-label text-white m-1" for="customFile22">เลือกรูปหลักฐาน2</label>
+                                            <input type="file" class="form-control d-none" id="customFile22" onchange="displaySelectedImage(event, 'selectedImage22')" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="mb-3" style="margin-top: 10px;">
+                                    <div class="mb-4 d-flex justify-content-center">
+                                        <img id="selectedImage23" src="icon/image.png" 
+                                        alt="example placeholder" />
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="btn btn-primary btn-rounded">
+                                            <label class="form-label text-white m-1" for="customFile23">เลือกรูปหลักฐาน3</label>
+                                            <input type="file" class="form-control d-none" id="customFile23" onchange="displaySelectedImage(event, 'selectedImage23')" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset id="originalFieldset3" class="border p-2" style="margin-top: 10px;display: none;">
+                                <legend  class="w-auto legend-header" style="text-align: left;color: #1ab196;"> ใบเสร็จที่3</legend>
+                                <div class="mb-3" style="margin-top: 10px;">
+                                    <div class="mb-4 d-flex justify-content-center">
+                                        <img id="selectedImage31" src="icon/image.png" 
+                                        alt="example placeholder" />
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="btn btn-primary btn-rounded">
+                                            <label class="form-label text-white m-1" for="customFile31">เลือกรูปหลักฐาน1</label>
+                                            <input type="file" class="form-control d-none" id="customFile31" onchange="displaySelectedImage(event, 'selectedImage31')" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="mb-3" style="margin-top: 10px;">
+                                    <div class="mb-4 d-flex justify-content-center">
+                                        <img id="selectedImage32" src="icon/image.png" 
+                                        alt="example placeholder" />
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="btn btn-primary btn-rounded">
+                                            <label class="form-label text-white m-1" for="customFile32">เลือกรูปหลักฐาน2</label>
+                                            <input type="file" class="form-control d-none" id="customFile32" onchange="displaySelectedImage(event, 'selectedImage32')" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="mb-3" style="margin-top: 10px;">
+                                    <div class="mb-4 d-flex justify-content-center">
+                                        <img id="selectedImage33" src="icon/image.png" 
+                                        alt="example placeholder" />
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="btn btn-primary btn-rounded">
+                                            <label class="form-label text-white m-1" for="customFile33">เลือกรูปหลักฐาน33</label>
+                                            <input type="file" class="form-control d-none" id="customFile33" onchange="displaySelectedImage(event, 'selectedImage33')" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset id="originalFieldset4" class="border p-2" style="margin-top: 10px;display: none;">
+                                <legend  class="w-auto legend-header" style="text-align: left;color: #1ab196;"> ใบเสร็จที่4</legend>
+                                <div class="mb-3" style="margin-top: 10px;">
+                                    <div class="mb-4 d-flex justify-content-center">
+                                        <img id="selectedImage41" src="icon/image.png" 
+                                        alt="example placeholder" />
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="btn btn-primary btn-rounded">
+                                            <label class="form-label text-white m-1" for="customFile41">เลือกรูปหลักฐาน1</label>
+                                            <input type="file" class="form-control d-none" id="customFile41" onchange="displaySelectedImage(event, 'selectedImage41')" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="mb-3" style="margin-top: 10px;">
+                                    <div class="mb-4 d-flex justify-content-center">
+                                        <img id="selectedImage42" src="icon/image.png" 
+                                        alt="example placeholder" />
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="btn btn-primary btn-rounded">
+                                            <label class="form-label text-white m-1" for="customFile42">เลือกรูปหลักฐาน2</label>
+                                            <input type="file" class="form-control d-none" id="customFile42" onchange="displaySelectedImage(event, 'selectedImage42')" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="mb-3" style="margin-top: 10px;">
+                                    <div class="mb-4 d-flex justify-content-center">
+                                        <img id="selectedImage43" src="icon/image.png" 
+                                        alt="example placeholder" />
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="btn btn-primary btn-rounded">
+                                            <label class="form-label text-white m-1" for="customFile43">เลือกรูปหลักฐาน3</label>
+                                            <input type="file" class="form-control d-none" id="customFile43" onchange="displaySelectedImage(event, 'selectedImage43')" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset id="originalFieldset5" class="border p-2" style="margin-top: 10px;display: none;">
+                                <legend  class="w-auto legend-header" style="text-align: left;color: #1ab196;"> ใบเสร็จที่5</legend>
+                                <div class="mb-3" style="margin-top: 10px;">
+                                    <div class="mb-4 d-flex justify-content-center">
+                                        <img id="selectedImage51" src="icon/image.png" 
+                                        alt="example placeholder" />
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="btn btn-primary btn-rounded">
+                                            <label class="form-label text-white m-1" for="customFile51">เลือกรูปหลักฐาน1</label>
+                                            <input type="file" class="form-control d-none" id="customFile51" onchange="displaySelectedImage(event, 'selectedImage51')" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="mb-3" style="margin-top: 10px;">
+                                    <div class="mb-4 d-flex justify-content-center">
+                                        <img id="selectedImage52" src="icon/image.png" 
+                                        alt="example placeholder" />
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="btn btn-primary btn-rounded">
+                                            <label class="form-label text-white m-1" for="customFile52">เลือกรูปหลักฐาน2</label>
+                                            <input type="file" class="form-control d-none" id="customFile52" onchange="displaySelectedImage(event, 'selectedImage52')" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="mb-3" style="margin-top: 10px;">
+                                    <div class="mb-4 d-flex justify-content-center">
+                                        <img id="selectedImage53" src="icon/image.png" 
+                                        alt="example placeholder" />
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="btn btn-primary btn-rounded">
+                                            <label class="form-label text-white m-1" for="customFile53">เลือกรูปหลักฐาน3</label>
+                                            <input type="file" class="form-control d-none" id="customFile53" onchange="displaySelectedImage(event, 'selectedImage53')" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="mb-3" style="margin-top: 10px;text-align:center">
+                                <img id="removeImg" onclick="removeDiv()" src="icon/minus.png" alt="minus" style="width: 50px;display: none;"/>
+                                <img id="addImg" onclick="addDiv()" src="icon/plus.png" alt="plus" style="width: 50px;"/>
                             </div>
 
-                            <div class="d-grid gap-2" style="margin-bottom: 60px;">
+                            <div class="d-grid gap-2" style="margin-bottom: 60px;margin-top: 10px;">
                                 <button id="buttonSubmit" style="background-color: #D3AD80;color: white;width: 100%;" class="btn" type="button" onclick="validateUpload()">ยืนยัน</button>
                             </div>
 
@@ -251,7 +429,7 @@
             <div class="col-md-12 tabbar-section">
                 <div class="tab_item_active">
                     <div class="tab_icon tab_slip"></div>
-                    <div class="tab_text">อัปโหลดสลิป</div>
+                    <div class="tab_text">อัปโหลดใบเสร็จ</div>
                 </div>
                 <div class="tab_item" onclick="nextTo('reward.html')">
                     <div class="tab_icon tab_reward"></div>
@@ -267,8 +445,8 @@
     </div>
 
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
-    <script src="liff-config.js?cache=202401282138"></script>
-    <script src="upload-slip.js?cache=202401282138"></script>
+    <script src="liff-config.js?cache=202402011532"></script>
+    <script src="upload-slip.js?cache=202402011532"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
