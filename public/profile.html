@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบสะสมสิทธิ์</title>
+    <title>เปลี่ยนใบเสร็จเป็นรางวัล</title>
     <link rel="icon" type="image/x-icon" href="cat.ico">
     <!-- เรียกใช้ Bootstrap CSS -->
     <link rel="stylesheet" href="bootstrap.min.css">
@@ -177,7 +177,7 @@
 
 .tabbar-section .tab_icon {
     width: 40px;
-    height: 50px;
+    height: 30px;
     margin: 0 auto;
 }
     </style>
@@ -198,12 +198,11 @@
                     <div class="card-body">
                         <form>
                             <div style="text-align: center;">
-                                <b id="pointText" style="font-size: 20px;color: #B37B38;">คุณมี 0 สิทธิ์ หมดอายุ 31 ธ.ค. 2567</b>
+                                <button id="pointButton" style="background-color: #B37B38;color: white;width: 15%;font-size: 28px;" class="btn" type="button">คุณมี 0 สิทธิ์</button>
                             </div>
                             
                             <div class="mb-3" style="margin-top: 10px;text-align:center">
-                                <img src="https://profile.line-scdn.net/0h3-mBkcw3bAJAO3l34VQSfTBrb2hjSjUQPw0jNnNoYWZ9CX8DaQoqMCY7MmUpDC9ROw5xYHE6YWFMKBtkXm2QNkcLMjZ5DihXaVkm4w" 
-                                class="avatar" alt="reward placeholder" />
+                                <img id="img-profile" src="icon/image.png" class="avatar" alt="reward placeholder" />
                             </div>
                             
                             <div class="mb-3" style="margin-top: 10px;">
@@ -297,7 +296,7 @@
                             </div>
 
                             <div class="d-grid gap-2" style="margin-bottom: 60px;">
-                                <button id="buttonSubmit" style="background-color: #D3AD80;color: white;width: 100%;" class="btn" type="button" onclick="validateValue(false)">บันทึก</button>
+                                <button id="buttonSubmit" style="background-color: #B37B38;color: white;width: 100%;" class="btn" type="button" onclick="validateValue(false)">บันทึก</button>
                             </div>
 
                         </form>
@@ -322,8 +321,8 @@
     </div>
 
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
-    <script src="liff-config.js?cache=202402011532"></script>
-    <script src="profile.js?cache=202402011532"></script>
+    <script src="liff-config.js?cache=202402091212"></script>
+    <script src="profile.js?cache=202402091212"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>

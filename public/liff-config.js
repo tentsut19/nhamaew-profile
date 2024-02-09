@@ -1,13 +1,20 @@
-const LIFF_ID = '2002126306-rG8n6Bnp';
-// const LIFF_ID = '2003132696-jZQqpMZ4';
-const PROD = false;
-// const DOMAIN = "https://cabsat-api.easynet.co.th/";
-const DOMAIN = "http://localhost:8091/";
+// const LIFF_ID = '2002126306-rG8n6Bnp';
+const LIFF_ID = '2003132696-jZQqpMZ4';
+const PROD = true;
+const DOMAIN = "https://cabsat-api.easynet.co.th/";
+// const DOMAIN = "http://localhost:8091/";
 const URL_CHECK_USER = DOMAIN+"api/v1/cat-bot/check-user";
 const URL_REGISTER_USER = DOMAIN+"api/v1/cat-bot/register-line-user";
 const URL_UPDATE_LINE_USER = DOMAIN+"api/v1/cat-bot/update-line-user";
 const URL_UPLOAD_SLIP = DOMAIN+"api/v1/cat-bot/upload-slip";
 const URL_GET_LINE_PROFILE = DOMAIN+"api/v1/cat-bot/line-profile/";
+
+var profileTest = {
+    userId:'U696407e9324efff51ab1652b92253add',
+    displayName:'Tent365💰💰',
+    statusMessage:'อย่าพยายาม ทำในสิ่งที่เป็นไปไม่ได้',
+    pictureUrl:'https://profile.line-scdn.net/0h3-mBgel0bAJAO3l34VQSfTBrb2hjSjUQPw0jNnNoYWZ9CX8DaQoqMCY7MmUpDC9ROw5xYHE6YWFMKBtkXm2QNkcLMTN8CCtXa18i4w'
+}
 
 function nextTo(url){
     window.location.href = url;

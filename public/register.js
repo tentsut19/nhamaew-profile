@@ -22,6 +22,15 @@ async function initializeLiff() {
         return;
     }
 
+    var profile
+    if (PROD) {
+        profile = await liff.getProfile();
+    }else{
+        profile = profileTest;
+    }
+    const selectedImage = document.getElementById('img-profile');
+    selectedImage.src = profile.pictureUrl;
+
     getProvince();
 }
 
@@ -149,6 +158,7 @@ function getZipCode(e) {
             document.getElementById("zipcode").value = element[1];
         }
     });
+    validateValue();
 }
 
 function validateValue(){
@@ -156,7 +166,6 @@ function validateValue(){
     var lastName = document.getElementById("lastName");
     var gender = document.getElementById("gender");
     var phoneNumber = document.getElementById("phoneNumber");
-    var email = document.getElementById("email");
     var district = document.getElementById("district");
     var amphoe = document.getElementById("amphoe");
     var province = document.getElementById("province");
@@ -169,12 +178,11 @@ function validateValue(){
     valid = valid && lastNameText(lastName,100);
     valid = valid && addOrRemoveClassIsInvalid(gender);
     valid = valid && phoneNumberText(phoneNumber,100);
-    valid = valid && emailText(email,100);
     valid = valid && addOrRemoveClassIsInvalid(province);
     valid = valid && addOrRemoveClassIsInvalid(amphoe);
     valid = valid && addOrRemoveClassIsInvalid(district);
-    valid = valid && addOrRemoveClassIsInvalid(zipcode);
-    valid = valid && addOrRemoveClassIsInvalid(petTotal);
+    valid = valid && zipcodeText(zipcode,5);
+    valid = valid && petTotalText(petTotal,5);
     valid = valid && validateConsent(consent);
 
     if(!valid){
@@ -190,6 +198,14 @@ function validateValue(){
         return;
     }
     openDialogConfirm();
+}
+
+function filterNonNumeric(input) {
+    // Regular expression to match non-numeric characters
+    var nonNumericRegex = /[^0-9]/g;
+    
+    // Remove non-numeric characters from the input
+    return input.replace(nonNumericRegex, '');
 }
 
 function addOrRemoveClassIsInvalid(ele,limit){
@@ -253,6 +269,7 @@ function lastNameText(ele,limit){
 }
 
 function phoneNumberText(ele,limit){
+    ele.value = filterNonNumeric(ele.value);
     if(ele && ele.value){
         document.getElementById('phoneNumberText').innerHTML = ele.value.length+'/100';
         if(ele.value.length > limit){
@@ -276,24 +293,53 @@ function phoneNumberText(ele,limit){
     }
 }
 
-function emailText(ele,limit){
+function petTotalText(ele,limit){
+    ele.value = filterNonNumeric(ele.value);
     if(ele && ele.value){
-        document.getElementById('emailText').innerHTML = ele.value.length+'/100';
+        document.getElementById('petTotalText').innerHTML = ele.value.length+'/5';
         if(ele.value.length > limit){
-            document.getElementById('emailTextInvalid').innerHTML = 'ข้อความเกินที่กำหนด';
+            document.getElementById('petTotalTextInvalid').innerHTML = 'ข้อความเกินที่กำหนด';
             ele.classList.add("is-invalid");
             ele.scrollIntoView({ behavior: 'auto' });
             window.scrollBy(0, -40);
             return false;
         }else{
-            document.getElementById('emailTextInvalid').innerHTML = '';
+            document.getElementById('petTotalTextInvalid').innerHTML = '';
             ele.classList.remove("is-invalid");
             return true;
         }
     }else{
-        document.getElementById('emailText').innerHTML = '0/100';
-        ele.classList.remove("is-invalid");
-        return true;
+        document.getElementById('petTotalTextInvalid').innerHTML = 'กรุณากรอกข้อมูล';
+        document.getElementById('petTotalText').innerHTML = '0/5';
+        ele.classList.add("is-invalid");
+        ele.scrollIntoView({ behavior: 'auto' });
+        window.scrollBy(0, -40);
+        return false;
+    }
+}
+
+function zipcodeText(ele,limit){
+    ele.value = filterNonNumeric(ele.value);
+    if(ele && ele.value){
+        document.getElementById('zipcodeText').innerHTML = ele.value.length+'/5';
+        if(ele.value.length > limit){
+            document.getElementById('zipcodeTextInvalid').innerHTML = 'ข้อความเกินที่กำหนด';
+            ele.classList.add("is-invalid");
+            ele.scrollIntoView({ behavior: 'auto' });
+            window.scrollBy(0, -40);
+            return false;
+        }else{
+            document.getElementById('zipcodeTextInvalid').innerHTML = '';
+            ele.classList.remove("is-invalid");
+            return true;
+        }
+    }else{
+        document.getElementById('zipcodeTextInvalid').innerHTML = 'กรุณากรอกข้อมูล';
+        document.getElementById('zipcodeText').innerHTML = '0/5';
+        ele.classList.add("is-invalid");
+        ele.scrollIntoView({ behavior: 'auto' });
+        window.scrollBy(0, -40);
+        return false;
     }
 }
 
@@ -369,19 +415,13 @@ async function submit(){
         if (PROD) {
             profile = await liff.getProfile();
         }else{
-            profile = {
-                userId:'U696407e9324efff51ab1652b92253add',
-                displayName:'Tent365💰💰',
-                statusMessage:'อย่าพยายาม ทำในสิ่งที่เป็นไปไม่ได้',
-                pictureUrl:'https://profile.line-scdn.net/0h3-mBgel0bAJAO3l34VQSfTBrb2hjSjUQPw0jNnNoYWZ9CX8DaQoqMCY7MmUpDC9ROw5xYHE6YWFMKBtkXm2QNkcLMTN8CCtXa18i4w'
-            }
+            profile = profileTest;
         }
 
         var firstName = document.getElementById("firstName").value;
         var lastName = document.getElementById("lastName").value;
         var gender = document.getElementById("gender").value;
         var phoneNumber = document.getElementById("phoneNumber").value;
-        var email = document.getElementById("email").value;
         var district = document.getElementById("district").value;
         var amphoe = document.getElementById("amphoe").value;
         var province = document.getElementById("province").value;
@@ -407,7 +447,6 @@ async function submit(){
                 lastName: lastName,
                 gender: gender,
                 phoneNumber: phoneNumber,
-                email: email,
                 district: district,
                 amphoe: amphoe,
                 province: province,

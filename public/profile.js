@@ -38,13 +38,11 @@ async function getLineProfile(){
         if (PROD) {
             profile = await liff.getProfile();
         }else{
-            profile = {
-                userId:'U696407e9324efff51ab1652b92253add',
-                displayName:'Tent365💰💰',
-                statusMessage:'อย่าพยายาม ทำในสิ่งที่เป็นไปไม่ได้',
-                pictureUrl:'https://profile.line-scdn.net/0h3-mBgel0bAJAO3l34VQSfTBrb2hjSjUQPw0jNnNoYWZ9CX8DaQoqMCY7MmUpDC9ROw5xYHE6YWFMKBtkXm2QNkcLMTN8CCtXa18i4w'
-            }
+            profile = profileTest;
         }
+
+        const selectedImage = document.getElementById('img-profile');
+        selectedImage.src = profile.pictureUrl;
 
         var firstName = document.getElementById("firstName");
         var lastName = document.getElementById("lastName");
@@ -56,7 +54,7 @@ async function getLineProfile(){
         var province = document.getElementById("province");
         var zipcode = document.getElementById("zipcode");
         var petTotal = document.getElementById("petTotal");
-        var pointText = document.getElementById("pointText");
+        var pointButton = document.getElementById("pointButton");
 
         document.getElementById("overlay").style.display = "block";
 
@@ -86,7 +84,7 @@ async function getLineProfile(){
             zipcode.value = data.zipcode
             petTotal.value = data.petTotal
 
-            pointText.textContent = "คุณมี "+data.point+" สิทธิ์ หมดอายุ 31 ธ.ค. 2567";
+            pointButton.textContent = "คุณมี "+data.point+" สิทธิ์";
 
             validateValue(true);
         }else{
@@ -389,7 +387,7 @@ function openDialogConfirm(){
     Swal.fire({
     //   title: 'ยืนยันการส่งข้อมูลใช่ไหม?',
     //   text: "เมื่อกดยืนยัน คุณจะได้รับเลขนัดปรึกษาสัตวแพทย์ทางไลน์ หากไม่ได้รับกรุณาติดต่อแอดมิน",
-      html: "<b style='font-size: 24px;'>ยืนยันการลงทะเบียนใช่ไหม</b><br><br><label style='font-size: 20px;'></label>",
+      html: "<b style='font-size: 24px;'>ยืนยันการบันทึกข้อมูลใช่ไหม</b><br><br><label style='font-size: 20px;'></label>",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -437,12 +435,7 @@ async function submit(){
         if (PROD) {
             profile = await liff.getProfile();
         }else{
-            profile = {
-                userId:'U696407e9324efff51ab1652b92253add',
-                displayName:'Tent365💰💰',
-                statusMessage:'อย่าพยายาม ทำในสิ่งที่เป็นไปไม่ได้',
-                pictureUrl:'https://profile.line-scdn.net/0h3-mBgel0bAJAO3l34VQSfTBrb2hjSjUQPw0jNnNoYWZ9CX8DaQoqMCY7MmUpDC9ROw5xYHE6YWFMKBtkXm2QNkcLMTN8CCtXa18i4w'
-            }
+            profile = profileTest;
         }
 
         var firstName = document.getElementById("firstName").value;

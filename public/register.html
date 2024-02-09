@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบสะสมสิทธิ์</title>
+    <title>เปลี่ยนใบเสร็จเป็นรางวัล</title>
     <link rel="icon" type="image/x-icon" href="cat.ico">
     <!-- เรียกใช้ Bootstrap CSS -->
     <link rel="stylesheet" href="bootstrap.min.css">
@@ -127,6 +127,12 @@
         .swal2-modal {
             height: 80%;
         }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 120px;
+        }
     </style>
 </head>
 <body>
@@ -144,6 +150,12 @@
                     </div>
                     <div class="card-body">
                         <form>
+                            <div style="text-align: center;">
+                                <b style="font-size: 22px;">เปลี่ยนใบเสร็จ</b><br><b style="font-size: 22px;color: #B37B38;">เป็นรางวัล</b><b style="font-size: 22px;"> By หน้าแมว</b>
+                            </div>
+                            <div class="mb-3" style="margin-top: 10px;text-align:center">
+                                <img id="img-profile" src="icon/image.png" class="avatar" alt="reward placeholder" />
+                            </div>
                             <div style="text-align: center;">
                                 <b style="font-size: 18px;color: #B37B38;">กรุณากรอกข้อมูลเพื่อลงทะเบียน</b>
                             </div>
@@ -194,18 +206,6 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3" style="margin-top: 10px;">
-                                <label for="email" class="form-label">อีเมล</label>
-                                <div class="input-group mb-2">
-                                    <input type="input" class="form-control" id="email" placeholder="อีเมล" onkeyup="emailText(this,100)">
-                                    <div class="input-group-prepend">
-                                      <div id="emailText" class="input-group-text">0/100</div>
-                                    </div>
-                                    <div id="emailTextInvalid" class="invalid-feedback">
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="mb-3">
                                 <label for="province" class="form-label">จังหวัด</label>
                                 <select class="form-control" id="province" onchange="getAmphur(event.target.value)">
@@ -224,32 +224,42 @@
                                 </select>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3" style="margin-top: 10px;">
                                 <label for="zipcode" class="form-label">รหัสไปรษณีย์</label>
-                                <input type="input" class="form-control" id="zipcode" placeholder="รหัสไปรษณีย์" onblur="addOrRemoveClassIsInvalid(this)">
+                                <div class="input-group mb-2">
+                                    <input type="input" class="form-control" id="zipcode" placeholder="รหัสไปรษณีย์" onkeyup="zipcodeText(this,5)">
+                                    <div class="input-group-prepend">
+                                      <div id="zipcodeText" class="input-group-text">0/5</div>
+                                    </div>
+                                    <div id="zipcodeTextInvalid" class="invalid-feedback">
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3" style="margin-top: 10px;">
                                 <label for="petTotal" class="form-label">จำนวนแมวที่เลี้ยง</label>
                                 <div class="input-group mb-2">
-                                    <input type="number" class="form-control" id="petTotal" placeholder="จำนวนแมวที่เลี้ยง">
+                                    <input type="input" class="form-control" id="petTotal" placeholder="จำนวนแมวที่เลี้ยง" onkeyup="petTotalText(this,5)">
+                                    <div class="input-group-prepend">
+                                      <div id="petTotalText" class="input-group-text">0/5</div>
+                                    </div>
                                     <div id="petTotalTextInvalid" class="invalid-feedback">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="mb-3" style="margin-top: 10px;">
-                                <label class="customcheck">ฉันยินยอมให้ระบบเก็บข้อมูล <a style="font-family: 'FC Iconic Regular', sans-serif !important;font-size: 16px;" href="javascript:void(0)" onclick="openConsent()">ข้อมูลเพิ่มเติม</a>
+                                <label class="customcheck">ยอมรับ <a style="font-family: 'FC Iconic Regular', sans-serif !important;font-size: 16px;" href="javascript:void(0)" onclick="openConsent()">นโยบายความเป็นส่วนตัว</a>
                                     <input type="checkbox" id="consent" onclick="clickConsent()">
                                     <span class="checkmark"></span>
                                 </label>
                                 <div id="consentInvalid" style="display: none;color: #dc3545;font-size: 80%">
-                                    กรุณากดยินยอม
+                                    กรุณากดยอมรับนโยบายความเป็นส่วนตัว
                                 </div>
                             </div>
 
                             <div class="d-grid gap-2">
-                                <button id="buttonSubmit" style="background-color: #D3AD80;color: white;width: 100%;" class="btn" type="button" onclick="validateValue()">ลงทะเบียน</button>
+                                <button id="buttonSubmit" style="background-color: #B37B38;color: white;width: 100%;" class="btn" type="button" onclick="validateValue()">ลงทะเบียน</button>
                             </div>
 
                         </form>
@@ -260,8 +270,8 @@
     </div>
 
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
-    <script src="liff-config.js?cache=202402011532"></script>
-    <script src="register.js?cache=202402011532"></script>
+    <script src="liff-config.js?cache=202402091212"></script>
+    <script src="register.js?cache=202402091212"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
