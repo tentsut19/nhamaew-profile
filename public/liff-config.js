@@ -7,7 +7,10 @@ const URL_CHECK_USER = DOMAIN+"api/v1/cat-bot/check-user";
 const URL_REGISTER_USER = DOMAIN+"api/v1/cat-bot/register-line-user";
 const URL_UPDATE_LINE_USER = DOMAIN+"api/v1/cat-bot/update-line-user";
 const URL_UPLOAD_SLIP = DOMAIN+"api/v1/cat-bot/upload-slip";
+const URL_UPLOAD_SLIP_NOT_PASS = DOMAIN+"api/v1/cat-bot/upload-slip-not-pass";
 const URL_GET_LINE_PROFILE = DOMAIN+"api/v1/cat-bot/line-profile/";
+const URL_GET_SLIP_NOT_PASS = DOMAIN+"api/v1/cat-bot/slip-not-pass/";
+const URL_GET_SLIP = DOMAIN+"api/v1/cat-bot/slip/";
 
 var profileTest = {
     userId:'U696407e9324efff51ab1652b92253add',

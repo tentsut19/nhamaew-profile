@@ -144,7 +144,7 @@
 
 .tabbar-section .tab_item {
     overflow: hidden;
-    width: 33.33%;
+    width: 25%;
     float: left;
     text-align: center;
     cursor: pointer;
@@ -153,7 +153,7 @@
 
 .tabbar-section .tab_item_active {
     overflow: hidden;
-    width: 33.33%;
+    width: 25%;
     float: left;
     text-align: center;
     background-color: #B37B38;
@@ -172,6 +172,11 @@
 
 .tabbar-section .tab_profiles {
     background: url("icon/profiles.png") no-repeat center center;
+    background-size: contain;
+}
+
+.tabbar-section .tab_list {
+    background: url("icon/list.png") no-repeat center center;
     background-size: contain;
 }
 
@@ -199,6 +204,7 @@
                 <div class="card">
                     <div class="card-header">
                         <b style="font-size: 22px;">อัปโหลดใบเสร็จ</b>
+                        <a href="https://www.m.me/nhamaew" target="_blank" style="font-size: 18px;float: right;">กดเพื่อสอบถามแอดมิน</a>
                     </div>
                     <div class="card-body">
                         <form>
@@ -326,14 +332,18 @@
                     <div class="tab_icon tab_profiles"></div>
                     <div class="tab_text">ข้อมูลส่วนตัว</div>
                 </div>
+                <div class="tab_item" onclick="nextTo('not-pass-list.html')">
+                    <div class="tab_icon tab_list"></div>
+                    <div class="tab_text">รายการที่ไม่ผ่าน</div>
+                </div>
             </div>
 
         </div>
     </div>
 
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
-    <script src="liff-config.js?cache=202402091212"></script>
-    <script src="upload-slip.js?cache=202402091212"></script>
+    <script src="liff-config.js?cache=202402111745"></script>
+    <script src="upload-slip.js?cache=202402111745"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>

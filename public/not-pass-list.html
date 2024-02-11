@@ -193,22 +193,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <b style="font-size: 22px;">รางวัล</b>
+                        <b style="font-size: 22px;">รายการที่ไม่ผ่าน</b>
                     </div>
-                    <div class="card-body">
-                        <div style="text-align: center;">
-                            <b style="font-size: 18px;color: #B37B38;">รางวัลที่1</b>
-                        </div>
-                        <div class="mb-12" style="margin-top: 10px;">
-                            <img src="pic/reward.jpg" style="max-width:100%;height:auto;" alt="reward placeholder" />
-                        </div>
-                        <hr>
-                        <div style="text-align: center;">
-                            <b style="font-size: 18px;color: #B37B38;">รางวัลที่2</b>
-                        </div>
-                        <div class="mb-12" style="margin-top: 10px;">
-                            <img src="pic/reward2.jpg" style="max-width:100%;height:auto;" alt="reward placeholder" />
-                        </div>
+                    <div class="card-body" id="divCardBody">
                     </div>
                 </div>
             </div>
@@ -218,7 +205,7 @@
                     <div class="tab_icon tab_slip"></div>
                     <div class="tab_text">อัปโหลดใบเสร็จ</div>
                 </div>
-                <div class="tab_item_active">
+                <div class="tab_item" onclick="nextTo('reward.html')">
                     <div class="tab_icon tab_reward"></div>
                     <div class="tab_text">รางวัล</div>
                 </div>
@@ -226,7 +213,7 @@
                     <div class="tab_icon tab_profiles"></div>
                     <div class="tab_text">ข้อมูลส่วนตัว</div>
                 </div>
-                <div class="tab_item" onclick="nextTo('not-pass-list.html')">
+                <div class="tab_item_active">
                     <div class="tab_icon tab_list"></div>
                     <div class="tab_text">รายการที่ไม่ผ่าน</div>
                 </div>
@@ -237,7 +224,7 @@
 
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
     <script src="liff-config.js?cache=202402111745"></script>
-    <script src="reward.js?cache=202402111745"></script>
+    <script src="not-pass-list.js?cache=202402111745"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>

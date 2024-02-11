@@ -128,6 +128,12 @@
             height: 80%;
         }
 
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 120px;
+        }
+
 .tabbar-section {
     position: fixed;
     bottom: 0;
@@ -193,22 +199,56 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <b style="font-size: 22px;">รางวัล</b>
+                        <b style="font-size: 22px;">ใบเสร็จที่ไม่ผ่าน</b>
                     </div>
                     <div class="card-body">
-                        <div style="text-align: center;">
-                            <b style="font-size: 18px;color: #B37B38;">รางวัลที่1</b>
-                        </div>
-                        <div class="mb-12" style="margin-top: 10px;">
-                            <img src="pic/reward.jpg" style="max-width:100%;height:auto;" alt="reward placeholder" />
-                        </div>
-                        <hr>
-                        <div style="text-align: center;">
-                            <b style="font-size: 18px;color: #B37B38;">รางวัลที่2</b>
-                        </div>
-                        <div class="mb-12" style="margin-top: 10px;">
-                            <img src="pic/reward2.jpg" style="max-width:100%;height:auto;" alt="reward placeholder" />
-                        </div>
+                        <form>
+                            <fieldset class="border p-2" style="margin-top: 10px;">
+                                <legend  class="w-auto legend-header" style="text-align: left;color: #1ab196;"> ใบเสร็จที่ต้องแก้ไข</legend>
+                                <div class="mb-3" style="margin-top: 10px;">
+                                    <div class="mb-4 d-flex justify-content-center">
+                                    <img id="selectedImage1" src="icon/image.png" alt="example placeholder" />
+                                    </div>
+                                    <div id="divButton1" class="d-flex justify-content-center">
+                                        <div class="btn btn-primary btn-rounded">
+                                            <label class="form-label text-white m-1" for="customFile1">รูปที่1</label>
+                                            <input type="file" class="form-control d-none" id="customFile1" onchange="displaySelectedImage(event, 'selectedImage1')" />
+                                        </div>
+                                        <button type="button" class="btn btn-danger" style="margin-left: 20px;font-size: 1.6em;" onclick="removeImage('1')">ลบรูปที่1</button>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="mb-3" style="margin-top: 10px;">
+                                    <div class="mb-4 d-flex justify-content-center">
+                                    <img id="selectedImage2" src="icon/image.png" alt="example placeholder" />
+                                    </div>
+                                    <div id="divButton2" class="d-flex justify-content-center">
+                                        <div class="btn btn-primary btn-rounded">
+                                            <label class="form-label text-white m-1" for="customFile2">รูปที่2</label>
+                                            <input type="file" class="form-control d-none" id="customFile2" onchange="displaySelectedImage(event, 'selectedImage2')" />
+                                        </div>
+                                        <button type="button" class="btn btn-danger" style="margin-left: 20px;font-size: 1.6em;" onclick="removeImage('2')">ลบรูปที่2</button>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="mb-3" style="margin-top: 10px;">
+                                    <div class="mb-4 d-flex justify-content-center">
+                                    <img id="selectedImage3" src="icon/image.png" alt="example placeholder" />
+                                    </div>
+                                    <div id="divButton3" class="d-flex justify-content-center">
+                                        <div class="btn btn-primary btn-rounded">
+                                            <label class="form-label text-white m-1" for="customFile3">รูปที่3</label>
+                                            <input type="file" class="form-control d-none" id="customFile3" onchange="displaySelectedImage(event, 'selectedImage3')" />
+                                        </div>
+                                        <button type="button" class="btn btn-danger" style="margin-left: 20px;font-size: 1.6em;" onclick="removeImage('3')">ลบรูปที่3</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="d-grid gap-2" style="margin-bottom: 60px;margin-top: 10px;">
+                                <button id="buttonSubmit" style="background-color: #B37B38;color: white;width: 100%;" class="btn" type="button" onclick="validateUpload()">ยืนยัน</button>
+                            </div>
+
+                        </form>
                     </div>
                 </div>
             </div>
@@ -216,9 +256,9 @@
             <div class="col-md-12 tabbar-section">
                 <div class="tab_item" onclick="nextTo('upload-slip.html')">
                     <div class="tab_icon tab_slip"></div>
-                    <div class="tab_text">อัปโหลดใบเสร็จ</div>
+                    <div class="tab_text">เปลี่ยนใบเสร็จเป็นรางวัล</div>
                 </div>
-                <div class="tab_item_active">
+                <div class="tab_item" onclick="nextTo('reward.html')">
                     <div class="tab_icon tab_reward"></div>
                     <div class="tab_text">รางวัล</div>
                 </div>
@@ -237,7 +277,7 @@
 
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
     <script src="liff-config.js?cache=202402111745"></script>
-    <script src="reward.js?cache=202402111745"></script>
+    <script src="not-pass-detail.js?cache=202402111745"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
