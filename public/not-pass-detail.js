@@ -77,6 +77,26 @@ async function getSlip(slipId){
                 document.getElementById("divButton3").style.setProperty("display", "none", "important");
             }
 
+            if(!data.check1){
+                document.getElementById("textarea1").style.display = "none";
+            }
+            if(!data.check2){
+                document.getElementById("textarea2").style.display = "none";
+            }
+            if(!data.check3){
+                document.getElementById("textarea3").style.display = "none";
+            }
+            if(data.note1){
+                document.getElementById("textarea1").value = data.note1;
+            }
+            if(data.note2){
+                document.getElementById("textarea2").value = data.note2;
+            }
+            if(data.note3){
+                document.getElementById("textarea3").value = data.note3;
+            }
+
+
         }else{
             swalError('เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง','');
         }
