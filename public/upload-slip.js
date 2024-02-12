@@ -431,8 +431,13 @@ function openCustomFile(index){
     console.log('== openCustomFile ==');
     Swal.fire({
         // title: "ข้อตกลง Consent การให้ข้อมูลส่วนบุคคล",
-        html: '<fieldset id="originalFieldset2" class="border p-2">'+
-        '<legend  class="w-auto legend-header" style="text-align: left;color: #1ab196;"> รูปใบเสร็จ</legend>'+
+        html: '<div>'+
+        '<ul>'+
+        '   <li>1 ใบเสร็จ อัปโหลดอย่างน้อย 1 แต่ไม่เกิน 3</li>'+
+        '</ul>'+
+        '</div>'+
+        '<fieldset id="originalFieldset2" class="border p-2">'+
+        '<legend  class="w-auto legend-header" style="text-align: left;color: #1ab196;"> ใบเสร็จที่'+index+'</legend>'+
         '<div class="mb-3" style="margin-top: 10px;">'+
         '   <div class="mb-4 d-flex justify-content-center">'+
         '       <img id="selectedImage1" src="icon/image.png" alt="example placeholder" />'+
