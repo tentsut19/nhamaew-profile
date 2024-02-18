@@ -51,6 +51,8 @@ async function getSlip(slipId){
             const data = await response.json();
             console.log('API Response:', data);
 
+            document.getElementById('slipNo').innerHTML = " "+data.code;
+
             const selectedImage1 = document.getElementById('selectedImage1');
             if (data.urlSlip1) {
                 selectedImage1.src = data.urlSlip1;
@@ -79,12 +81,27 @@ async function getSlip(slipId){
 
             if(!data.check1){
                 document.getElementById("textarea1").style.display = "none";
+                document.getElementById("imagePass1").style.display = "";
+                document.getElementById("imageEdit1").style.display = "none";
+            }else{
+                document.getElementById("imagePass1").style.display = "none";
+                document.getElementById("imageEdit1").style.display = "";
             }
             if(!data.check2){
                 document.getElementById("textarea2").style.display = "none";
+                document.getElementById("imagePass2").style.display = "";
+                document.getElementById("imageEdit2").style.display = "none";
+            }else{
+                document.getElementById("imagePass2").style.display = "none";
+                document.getElementById("imageEdit2").style.display = "";
             }
             if(!data.check3){
                 document.getElementById("textarea3").style.display = "none";
+                document.getElementById("imagePass3").style.display = "";
+                document.getElementById("imageEdit3").style.display = "none";
+            }else{
+                document.getElementById("imagePass3").style.display = "none";
+                document.getElementById("imageEdit3").style.display = "";
             }
             if(data.note1){
                 document.getElementById("textarea1").value = data.note1;
@@ -96,6 +113,32 @@ async function getSlip(slipId){
                 document.getElementById("textarea3").value = data.note3;
             }
 
+            if(data.status.code != 'FAIL'){
+                document.getElementById("divButton1").style.setProperty("display", "none", "important");
+                document.getElementById("divButton2").style.setProperty("display", "none", "important");
+                document.getElementById("divButton3").style.setProperty("display", "none", "important");
+                document.getElementById("buttonSubmit").style.display = "none";
+                document.getElementById("dicImagePass1").style.display = "";
+                document.getElementById("dicImagePass2").style.display = "";
+                document.getElementById("dicImagePass3").style.display = "";
+            }
+
+            if(data.status.code == 'FAIL'){
+                document.getElementById("divStatusEdit").style.display = "";
+                document.getElementById("dicImagePass1").style.display = "";
+                document.getElementById("dicImagePass2").style.display = "";
+                document.getElementById("dicImagePass3").style.display = "";
+            }else if(data.status.code == 'PASS'){
+                document.getElementById("divStatusPass").style.display = "";
+                document.getElementById("dicImagePass1").style.display = "none";
+                document.getElementById("dicImagePass2").style.display = "none";
+                document.getElementById("dicImagePass3").style.display = "none";
+            }else {
+                document.getElementById("divStatusWait").style.display = "";
+                document.getElementById("dicImagePass1").style.display = "none";
+                document.getElementById("dicImagePass2").style.display = "none";
+                document.getElementById("dicImagePass3").style.display = "none";
+            }
 
         }else{
             swalError('เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง','');
@@ -228,8 +271,10 @@ async function submit(){
         if(response.status == 200){
             const data = await response.json();
             console.log('API Response:', data);
-            swalSuccess('อัปโหลดแก้ไขใบเสร็จเรียบร้อย','');
-            setTimeout(liff.closeWindow(), 1500);
+            swalSuccess('อัปโหลดแก้ไขใบเสร็จเรียบร้อย',data.text);
+            setTimeout(function() {
+                nextTo('not-pass-list.html');
+            }, 2000);
         }else{
             document.getElementById("buttonSubmit").disabled = false;
             swalError('เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง','');

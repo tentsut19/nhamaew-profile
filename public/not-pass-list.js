@@ -64,23 +64,88 @@ async function getNotPass(){
                 const minutes = String(currentDate.getMinutes()).padStart(2, '0');
                 const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
 
-                const newDiv = document.createElement('div');
-                newDiv.innerHTML =  
-                `
-                <fieldset class="border p-2" style="margin-top: 10px;">
-                    <legend  class="w-auto legend-header" style="text-align: left;color: #1ab196;"> ใบเสร็จที่${index+1}</legend>
-                    <div class="d-flex justify-content-center">
-                        <b>เลขที่ใบเสร็จ : ${data.code}</b>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <b>วันเวลาที่ทำรายการ : ${formattedDate}</b>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <button type="button" class="btn btn-primary" onclick="nextTo('not-pass-detail.html?slip_id=${data.id}')">แก้ไขใบเสร็จ</button>
-                    </div>
-                </fieldset>
-                `;
-                ele.appendChild(newDiv);
+                const currentDate1 = new Date(data.updatedAt);
+                const year1 = currentDate1.getFullYear();
+                const month1 = String(currentDate1.getMonth() + 1).padStart(2, '0');
+                const day1 = String(currentDate1.getDate()).padStart(2, '0');
+                const hours1 = String(currentDate1.getHours()).padStart(2, '0');
+                const minutes1 = String(currentDate1.getMinutes()).padStart(2, '0');
+                const formattedDate1 = `${year1}-${month1}-${day1} ${hours1}:${minutes1}`;
+
+                if(data.status.code == 'FAIL'){
+                    const newDiv = document.createElement('div');
+                    newDiv.innerHTML =  
+                    `
+                    <fieldset class="border p-2" style="margin-top: 10px;">
+                        <legend  class="w-auto legend-header" style="text-align: left;color: #1ab196;"> ใบเสร็จที่${index+1}</legend>
+                        <div class="d-flex justify-content-center">
+                            <b>เลขที่ใบเสร็จ : ${data.code}</b>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <b>วันเวลาที่ทำรายการ : ${formattedDate}</b>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <b>วันเวลาที่แก้ไขรายการ : ${formattedDate1}</b>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <b>สถานะ : </b><b style="color: red;">ต้องแก้ไข</b>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-warning" onclick="nextTo('not-pass-detail.html?slip_id=${data.id}')">แก้ไขใบเสร็จ</button>
+                        </div>
+                    </fieldset>
+                    `;
+                    ele.appendChild(newDiv);
+                }else if(data.status.code == 'PASS'){
+                    const newDiv = document.createElement('div');
+                    newDiv.innerHTML =  
+                    `
+                    <fieldset class="border p-2" style="margin-top: 10px;">
+                        <legend  class="w-auto legend-header" style="text-align: left;color: #1ab196;"> ใบเสร็จที่${index+1}</legend>
+                        <div class="d-flex justify-content-center">
+                            <b>เลขที่ใบเสร็จ : ${data.code}</b>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <b>วันเวลาที่ทำรายการ : ${formattedDate}</b>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <b>วันเวลาที่แก้ไขรายการ : ${formattedDate1}</b>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <b>สถานะ : </b><b style="color: green;">${data.status.content}</b>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary" onclick="nextTo('not-pass-detail.html?slip_id=${data.id}')">ดูรายละเอียดใบเสร็จ</button>
+                        </div>
+                    </fieldset>
+                    `;
+                    ele.appendChild(newDiv);
+                }else{
+                    const newDiv = document.createElement('div');
+                    newDiv.innerHTML =  
+                    `
+                    <fieldset class="border p-2" style="margin-top: 10px;">
+                        <legend  class="w-auto legend-header" style="text-align: left;color: #1ab196;"> ใบเสร็จที่${index+1}</legend>
+                        <div class="d-flex justify-content-center">
+                            <b>เลขที่ใบเสร็จ : ${data.code}</b>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <b>วันเวลาที่ทำรายการ : ${formattedDate}</b>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <b>วันเวลาที่แก้ไขรายการ : ${formattedDate1}</b>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <b>สถานะ : </b><b style="color: orange;">รอการตรวจสอบ</b>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary" onclick="nextTo('not-pass-detail.html?slip_id=${data.id}')">ดูรายละเอียดใบเสร็จ</button>
+                        </div>
+                    </fieldset>
+                    `;
+                    ele.appendChild(newDiv);
+                }
+
                 
             });
 

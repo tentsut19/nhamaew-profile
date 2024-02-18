@@ -205,9 +205,17 @@
                         <form>
                             <fieldset class="border p-2" style="margin-top: 10px;">
                                 <legend  class="w-auto legend-header" style="text-align: left;color: #1ab196;"> ใบเสร็จที่ต้องแก้ไข</legend>
+                                <div style="text-align: left;"><b>เลขที่ใบเสร็จ :</b><b id="slipNo"></b></div>
+                                <div id="divStatusEdit" style="text-align: left;display: none;"><b>สถานะ : </b><b style="color: red;">ต้องแก้ไข</b></div>
+                                <div id="divStatusPass" style="text-align: left;display: none;"><b>สถานะ : </b><b style="color: green;">ผ่าน</b></div>
+                                <div id="divStatusWait" style="text-align: left;display: none;"><b>สถานะ : </b><b style="color: orange;">รอการตรวจสอบ</b></div>
                                 <div class="mb-3" style="margin-top: 10px;">
                                     <div class="mb-4 d-flex justify-content-center">
                                     <img id="selectedImage1" src="icon/image.png" alt="example placeholder" />
+                                    </div>
+                                    <div id="dicImagePass1" style="text-align: center;display: none;">
+                                        <b id="imagePass1" style="color: green;font-size: 22px;display: none;">ผ่านแล้ว</b>
+                                        <b id="imageEdit1" style="color: orange;font-size: 22px;display: none;">ต้องแก้ไข</b>
                                     </div>
                                     <textarea id="textarea1" rows="3" class="form-control" disabled></textarea><br>
                                     <div id="divButton1" class="d-flex justify-content-center">
@@ -223,6 +231,10 @@
                                     <div class="mb-4 d-flex justify-content-center">
                                     <img id="selectedImage2" src="icon/image.png" alt="example placeholder" />
                                     </div>
+                                    <div id="dicImagePass2" style="text-align: center;display: none;">
+                                        <b id="imagePass2" style="color: green;font-size: 22px;display: none;">ผ่านแล้ว</b>
+                                        <b id="imageEdit2" style="color: orange;font-size: 22px;display: none;">ต้องแก้ไข</b>
+                                    </div>
                                     <textarea id="textarea2" rows="3" class="form-control" disabled></textarea><br>
                                     <div id="divButton2" class="d-flex justify-content-center">
                                         <div class="btn btn-primary btn-rounded">
@@ -237,6 +249,10 @@
                                     <div class="mb-4 d-flex justify-content-center">
                                     <img id="selectedImage3" src="icon/image.png" alt="example placeholder" />
                                     </div>
+                                    <div id="dicImagePass3" style="text-align: center;display: none;">
+                                        <b id="imagePass3" style="color: green;font-size: 22px;display: none;">ผ่านแล้ว</b>
+                                        <b id="imageEdit3" style="color: orange;font-size: 22px;display: none;">ต้องแก้ไข</b>
+                                    </div>
                                     <textarea id="textarea3" rows="3" class="form-control" disabled></textarea><br>
                                     <div id="divButton3" class="d-flex justify-content-center">
                                         <div class="btn btn-primary btn-rounded">
@@ -248,7 +264,7 @@
                                 </div>
                             </fieldset>
                             <div class="d-grid gap-2" style="margin-bottom: 60px;margin-top: 10px;">
-                                <button id="buttonSubmit" style="background-color: #B37B38;color: white;width: 100%;" class="btn" type="button" onclick="validateUpload()">ยืนยัน</button>
+                                <button id="buttonSubmit" style="background-color: #B37B38;color: white;width: 100%;" class="btn" type="button" onclick="openDialogConfirm()">ยืนยัน</button>
                             </div>
 
                         </form>
@@ -279,8 +295,8 @@
     </div>
 
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
-    <script src="liff-config.js?cache=202402130224"></script>
-    <script src="not-pass-detail.js?cache=202402130224"></script>
+    <script src="liff-config.js?cache=202402181643"></script>
+    <script src="not-pass-detail.js?cache=202402181643"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
