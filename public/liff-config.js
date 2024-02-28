@@ -1,7 +1,7 @@
 // const LIFF_ID = '2002126306-rG8n6Bnp';
 const LIFF_ID = '2003132696-jZQqpMZ4';
 const PROD = true;
-const DOMAIN = "test-api.net/";
+const DOMAIN = "https://test-api.net/";
 // const DOMAIN = "http://localhost:8091/";
 const URL_CHECK_USER = DOMAIN+"api/v1/cat-bot/check-user";
 const URL_REGISTER_USER = DOMAIN+"api/v1/cat-bot/register-line-user";
