@@ -7,6 +7,7 @@
     <link rel="icon" type="image/x-icon" href="cat.ico">
     <!-- เรียกใช้ Bootstrap CSS -->
     <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" src="custom.css">
     <style>
         .error-border {
@@ -190,6 +191,9 @@
    width: 100% !important;
    height: 100% !important;
 }
+.checked {
+  color: orange;
+}
     </style>
 </head>
 <body>
@@ -234,6 +238,16 @@
                                     <div class="d-flex justify-content-center">
                                         <button type="button" class="btn btn-primary" onclick="openCustomFile('1')">เลือกรูปใบเสร็จ</button>
                                     </div>
+                                    <hr>
+                                    <b>รีวิวโรงพยาบาล</b><br>
+                                    <span id="rating11" onclick="updateRating('1','1')" class="fa fa-star"></span>
+                                    <span id="rating12" onclick="updateRating('1','2')" class="fa fa-star"></span>
+                                    <span id="rating13" onclick="updateRating('1','3')" class="fa fa-star"></span>
+                                    <span id="rating14" onclick="updateRating('1','4')" class="fa fa-star"></span>
+                                    <span id="rating15" onclick="updateRating('1','5')" class="fa fa-star"></span>
+                                    <div class="d-flex justify-content-center">
+                                        <textarea id="textarea1" rows="3" class="form-control" placeholder="กรอกข้อความที่ต้องการรีวิวโรงพยาบาล"></textarea>
+                                    </div>
                                 </div>
                             </fieldset>
                             <fieldset id="originalFieldset2" class="border p-2" style="margin-top: 10px;display: none;">
@@ -250,6 +264,16 @@
                                     </div>
                                     <div class="d-flex justify-content-center">
                                         <button type="button" class="btn btn-primary" onclick="openCustomFile('2')">เลือกรูปใบเสร็จ</button>
+                                    </div>
+                                    <hr>
+                                    <b>รีวิวโรงพยาบาล</b><br>
+                                    <span id="rating21" onclick="updateRating('2','1')" class="fa fa-star"></span>
+                                    <span id="rating22" onclick="updateRating('2','2')" class="fa fa-star"></span>
+                                    <span id="rating23" onclick="updateRating('2','3')" class="fa fa-star"></span>
+                                    <span id="rating24" onclick="updateRating('2','4')" class="fa fa-star"></span>
+                                    <span id="rating25" onclick="updateRating('2','5')" class="fa fa-star"></span>
+                                    <div class="d-flex justify-content-center">
+                                        <textarea id="textarea2" rows="3" class="form-control" placeholder="กรอกข้อความที่ต้องการรีวิวโรงพยาบาล"></textarea>
                                     </div>
                                 </div>
                             </fieldset>
@@ -268,6 +292,16 @@
                                     <div class="d-flex justify-content-center">
                                         <button type="button" class="btn btn-primary" onclick="openCustomFile('3')">เลือกรูปใบเสร็จ</button>
                                     </div>
+                                    <hr>
+                                    <b>รีวิวโรงพยาบาล</b><br>
+                                    <span id="rating31" onclick="updateRating('3','1')" class="fa fa-star"></span>
+                                    <span id="rating32" onclick="updateRating('3','2')" class="fa fa-star"></span>
+                                    <span id="rating33" onclick="updateRating('3','3')" class="fa fa-star"></span>
+                                    <span id="rating34" onclick="updateRating('3','4')" class="fa fa-star"></span>
+                                    <span id="rating35" onclick="updateRating('3','5')" class="fa fa-star"></span>
+                                    <div class="d-flex justify-content-center">
+                                        <textarea id="textarea3" rows="3" class="form-control" placeholder="กรอกข้อความที่ต้องการรีวิวโรงพยาบาล"></textarea>
+                                    </div>
                                 </div>
                             </fieldset>
                             <fieldset id="originalFieldset4" class="border p-2" style="margin-top: 10px;display: none;">
@@ -285,6 +319,16 @@
                                     <div class="d-flex justify-content-center">
                                         <button type="button" class="btn btn-primary" onclick="openCustomFile('4')">เลือกรูปใบเสร็จ</button>
                                     </div>
+                                    <hr>
+                                    <b>รีวิวโรงพยาบาล</b><br>
+                                    <span id="rating41" onclick="updateRating('4','1')" class="fa fa-star"></span>
+                                    <span id="rating42" onclick="updateRating('4','2')" class="fa fa-star"></span>
+                                    <span id="rating43" onclick="updateRating('4','3')" class="fa fa-star"></span>
+                                    <span id="rating44" onclick="updateRating('4','4')" class="fa fa-star"></span>
+                                    <span id="rating45" onclick="updateRating('4','5')" class="fa fa-star"></span>
+                                    <div class="d-flex justify-content-center">
+                                        <textarea id="textarea4" rows="3" class="form-control" placeholder="กรอกข้อความที่ต้องการรีวิวโรงพยาบาล"></textarea>
+                                    </div>
                                 </div>
                             </fieldset>
                             <fieldset id="originalFieldset5" class="border p-2" style="margin-top: 10px;display: none;">
@@ -301,6 +345,16 @@
                                     </div>
                                     <div class="d-flex justify-content-center">
                                         <button type="button" class="btn btn-primary" onclick="openCustomFile('5')">เลือกรูปใบเสร็จ</button>
+                                    </div>
+                                    <hr>
+                                    <b>รีวิวโรงพยาบาล</b><br>
+                                    <span id="rating51" onclick="updateRating('5','1')" class="fa fa-star"></span>
+                                    <span id="rating52" onclick="updateRating('5','2')" class="fa fa-star"></span>
+                                    <span id="rating53" onclick="updateRating('5','3')" class="fa fa-star"></span>
+                                    <span id="rating54" onclick="updateRating('5','4')" class="fa fa-star"></span>
+                                    <span id="rating55" onclick="updateRating('5','5')" class="fa fa-star"></span>
+                                    <div class="d-flex justify-content-center">
+                                        <textarea id="textarea5" rows="3" class="form-control" placeholder="กรอกข้อความที่ต้องการรีวิวโรงพยาบาล"></textarea>
                                     </div>
                                 </div>
                             </fieldset>
@@ -335,7 +389,7 @@
                 </div>
                 <div class="tab_item" onclick="nextTo('not-pass-list.html')">
                     <div class="tab_icon tab_list"></div>
-                    <div class="tab_text">รายการที่ไม่ผ่าน</div>
+                    <div class="tab_text">รายการอัปโหลด</div>
                 </div>
             </div>
 
@@ -343,8 +397,8 @@
     </div>
 
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
-    <script src="liff-config.js?cache=202402181643"></script>
-    <script src="upload-slip.js?cache=202402181643"></script>
+    <script src="liff-config.js?cache=202402281422"></script>
+    <script src="upload-slip.js?cache=202402281422"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>

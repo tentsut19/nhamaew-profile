@@ -390,6 +390,41 @@ async function submit(){
         formData.append('file53', file53);
         formData.append('lineUserId', profile.userId);
 
+        formData.append('ratingValue1', ratingValue1);
+        let textarea1 = document.getElementById("textarea1").value;
+        if(!textarea1){
+            textarea1 = "-";
+        }
+        formData.append('textarea1', textarea1);
+        
+        formData.append('ratingValue2', ratingValue2);
+        let textarea2 = document.getElementById("textarea2").value;
+        if(!textarea2){
+            textarea2 = "-";
+        }
+        formData.append('textarea2', textarea2);
+
+        formData.append('ratingValue3', ratingValue3);
+        let textarea3 = document.getElementById("textarea3").value;
+        if(!textarea3){
+            textarea3 = "-";
+        }
+        formData.append('textarea3', textarea3);
+
+        formData.append('ratingValue4', ratingValue4);
+        let textarea4 = document.getElementById("textarea4").value;
+        if(!textarea4){
+            textarea4 = "-";
+        }
+        formData.append('textarea4', textarea4);
+
+        formData.append('ratingValue5', ratingValue5);
+        let textarea5 = document.getElementById("textarea5").value;
+        if(!textarea5){
+            textarea5 = "-";
+        }
+        formData.append('textarea5', textarea5);
+
         const response = await fetch(URL_UPLOAD_SLIP, {
             method: 'POST',
             body: formData
@@ -402,7 +437,7 @@ async function submit(){
             swalSuccess('อัปโหลดใบเสร็จเรียบร้อย',data.text);
             setTimeout(function() {
                 nextTo('not-pass-list.html');
-              }, 2000);
+              }, 4000);
         }else{
             document.getElementById("buttonSubmit").disabled = false;
             swalError('เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง','');
@@ -436,7 +471,7 @@ function openCustomFile(index){
         html: ''+
         '<fieldset id="originalFieldset2" class="border p-2">'+
         '<legend  class="w-auto legend-header" style="text-align: left;color: #1ab196;"> ใบเสร็จที่'+index+'</legend>'+
-        '<div style="text-align: left;"><b>1 ใบเสร็จ อัปโหลดอย่างน้อย 1 แต่ไม่เกิน 3</b></div>'+
+        '<div style="text-align: left;"><b>1 ใบเสร็จ อัปโหลดอย่างน้อย 1 รูป แต่ไม่เกิน 3 รูป</b></div>'+
         '<div class="mb-3" style="margin-top: 10px;">'+
         '   <div class="mb-4 d-flex justify-content-center">'+
         '       <img id="selectedImage1" src="icon/image.png" alt="example placeholder" />'+
@@ -1202,13 +1237,66 @@ function closeSwal(){
     Swal.clickConfirm();
 }
 
+var ratingValue1 = 0;
+var ratingValue2 = 0;
+var ratingValue3 = 0;
+var ratingValue4 = 0;
+var ratingValue5 = 0;
+function updateRating(index,value){
+    if(index == '1'){
+        ratingValue1 = value;
+    }else if(index == '2'){
+        ratingValue2 = value;
+    }else if(index == '3'){
+        ratingValue3 = value;
+    }else if(index == '4'){
+        ratingValue4 = value;
+    }else if(index == '5'){
+        ratingValue5 = value;
+    }
+    const ratingEle1 = document.getElementById('rating'+index+"1");
+    const ratingEle2 = document.getElementById('rating'+index+"2");
+    const ratingEle3 = document.getElementById('rating'+index+"3");
+    const ratingEle4 = document.getElementById('rating'+index+"4");
+    const ratingEle5 = document.getElementById('rating'+index+"5");
+
+    ratingEle1.classList.remove("checked");
+    ratingEle2.classList.remove("checked");
+    ratingEle3.classList.remove("checked");
+    ratingEle4.classList.remove("checked");
+    ratingEle5.classList.remove("checked");
+
+    if(value == '1'){
+        ratingEle1.classList.add("checked");
+    }else if(value == '2'){
+        ratingEle1.classList.add("checked");
+        ratingEle2.classList.add("checked");
+    }else if(value == '3'){
+        ratingEle1.classList.add("checked");
+        ratingEle2.classList.add("checked");
+        ratingEle3.classList.add("checked");
+    }else if(value == '4'){
+        ratingEle1.classList.add("checked");
+        ratingEle2.classList.add("checked");
+        ratingEle3.classList.add("checked");
+        ratingEle4.classList.add("checked");
+    }else if(value == '5'){
+        ratingEle1.classList.add("checked");
+        ratingEle2.classList.add("checked");
+        ratingEle3.classList.add("checked");
+        ratingEle4.classList.add("checked");
+        ratingEle5.classList.add("checked");
+    }
+    
+}
+
 function swalSuccess(title,text){
     Swal.fire({
         title: title,
         text: text,
         icon: 'success',
         showConfirmButton: false,
-        timer: 1500
+        timer: 4000
       })
 }
 

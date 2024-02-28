@@ -128,6 +128,15 @@ async function getSlip(slipId){
                 document.getElementById("dicImagePass1").style.display = "";
                 document.getElementById("dicImagePass2").style.display = "";
                 document.getElementById("dicImagePass3").style.display = "";
+                if (!data.urlSlip1) {
+                    document.getElementById("dicImagePass1").style.display = "none";
+                }
+                if (!data.urlSlip2) {
+                    document.getElementById("dicImagePass2").style.display = "none";
+                }
+                if (!data.urlSlip3) {
+                    document.getElementById("dicImagePass3").style.display = "none";
+                }
             }else if(data.status.code == 'PASS'){
                 document.getElementById("divStatusPass").style.display = "";
                 document.getElementById("dicImagePass1").style.display = "none";
@@ -274,7 +283,7 @@ async function submit(){
             swalSuccess('อัปโหลดแก้ไขใบเสร็จเรียบร้อย',data.text);
             setTimeout(function() {
                 nextTo('not-pass-list.html');
-            }, 2000);
+            }, 4000);
         }else{
             document.getElementById("buttonSubmit").disabled = false;
             swalError('เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง','');
@@ -307,7 +316,7 @@ function swalSuccess(title,text){
         text: text,
         icon: 'success',
         showConfirmButton: false,
-        timer: 1500
+        timer: 4000
       })
 }
 
