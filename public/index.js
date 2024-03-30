@@ -23,23 +23,26 @@ async function initializeLiff() {
             return;
         }
 
-        friendship = await liff.getFriendship();
-        console.log(friendship);
-        if(!friendship.friendFlag){
-            document.getElementById("overlay").style.display = "none";
-            Swal.fire({
-                //   title: 'ยืนยันการส่งข้อมูลใช่ไหม?',
-                //   text: "เมื่อกดยืนยัน คุณจะได้รับเลขนัดปรึกษาสัตวแพทย์ทางไลน์ หากไม่ได้รับกรุณาติดต่อแอดมิน",
-                html: "<b style='font-size: 24px;'>กิจกรรมเปลี่ยนใบเสร็จเป็นรางวัล<br>เฉพาะผู้ที่เป็นเพื่อนกับ LINE<br>หน้าแมวเอไอ (Nhamaew Ai) เท่านั้น</b><br><br><label style='font-size: 20px;'></label>",
-                icon: 'warning',
-                showCancelButton: false,
-                allowOutsideClick: false,
-                confirmButtonColor: '#06c755',
-                confirmButtonText: 'เพิ่มเพื่อน Nhamaew Ai'
-            }).then((result) => {
-                console.log(result);
-                window.location.href = "https://lin.ee/1Zryb4y";
-            })
+        
+        if (PROD) {
+            friendship = await liff.getFriendship();
+            console.log(friendship);
+            if(!friendship.friendFlag){
+                document.getElementById("overlay").style.display = "none";
+                Swal.fire({
+                    //   title: 'ยืนยันการส่งข้อมูลใช่ไหม?',
+                    //   text: "เมื่อกดยืนยัน คุณจะได้รับเลขนัดปรึกษาสัตวแพทย์ทางไลน์ หากไม่ได้รับกรุณาติดต่อแอดมิน",
+                    html: "<b style='font-size: 24px;'>กิจกรรมเปลี่ยนใบเสร็จเป็นรางวัล<br>เฉพาะผู้ที่เป็นเพื่อนกับ LINE<br>หน้าแมวเอไอ (Nhamaew Ai) เท่านั้น</b><br><br><label style='font-size: 20px;'></label>",
+                    icon: 'warning',
+                    showCancelButton: false,
+                    allowOutsideClick: false,
+                    confirmButtonColor: '#06c755',
+                    confirmButtonText: 'เพิ่มเพื่อน Nhamaew Ai'
+                }).then((result) => {
+                    console.log(result);
+                    window.location.href = "https://lin.ee/1Zryb4y";
+                })
+            }
         }
 
         var profile

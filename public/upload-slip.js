@@ -280,6 +280,7 @@ function openDialogConfirm(){
 }
 
 async function submit(){
+    const formData = new FormData();
     try {
         if (!liff.isLoggedIn() && PROD) {
             const destinationUrl = window.location.href;
@@ -372,7 +373,6 @@ async function submit(){
         document.getElementById("buttonSubmit").disabled = true;
         document.getElementById("overlay").style.display = "block";
 
-        const formData = new FormData();
         formData.append('file11', file11);
         formData.append('file12', file12);
         formData.append('file13', file13);
@@ -424,7 +424,11 @@ async function submit(){
             textarea5 = "-";
         }
         formData.append('textarea5', textarea5);
-
+    } catch (error) {
+        swalError('เกิดข้อผิดพลาด!',error.message);
+        console.error('API Error:', error);
+    }
+    try {
         const response = await fetch(URL_UPLOAD_SLIP, {
             method: 'POST',
             body: formData
@@ -444,7 +448,7 @@ async function submit(){
         }
 
     } catch (error) {
-        swalError('เกิดข้อผิดพลาด','');
+        swalError('เกิดข้อผิดพลาด!!',error.message);
         console.error('API Error:', error);
     }
 }

@@ -195,6 +195,27 @@ function openConsent(){
     });
 }
 
+function openPopupReward(){
+    Swal.fire({
+        html: ''+
+        '<button style="background-color: #D3AD80;color: white;width: 100%;" class="btn" type="button" onclick="closeSwal()">ปิด</button><br><br>'+
+        '<b style="font-size: 18px;">รายชื่อผู้ได้รับรางวัล</b><br><br>'+
+        '<div style="text-align: left;">'+
+        '   <b style="font-size: 14px;">รางวัลที่1: ของรางวัลมูลค่า 1,000 บาท</b><br>'+
+        '   <label style="font-size: 14px;margin-bottom: 0;">คุณชีวรัตน์ เนียมจีน</label><br><br>'+
+        '   <b style="font-size: 14px;">รางวัลที่2: ของรางวัลมูลค่า 500 บาท</b><br>'+
+        '   <label style="font-size: 14px;margin-bottom: 0;">คุณวรรณภา สายเพ็ชร</label><br><br>'+
+        '   <b style="font-size: 14px;">รางวัลที่3: ของรางวัลมูลค่า 500 บาท</b><br>'+
+        '   <label style="font-size: 14px;margin-bottom: 0;">คุณวิภาภรณ์ สงค์โพธิ์</label>'+
+        '</div><br><br>'+
+        '<button style="background-color: #D3AD80;color: white;width: 100%;" class="btn" type="button" onclick="closeSwal()">ปิด</button>',
+        allowOutsideClick: false,
+        showCancelButton: false,
+        showConfirmButton: false
+    });
+}
+
+
 function closeSwal(){
     Swal.clickConfirm();
 }
