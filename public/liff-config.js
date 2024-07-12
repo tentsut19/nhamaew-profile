@@ -1,21 +1,12 @@
-// const LIFF_ID = '2002126306-rG8n6Bnp';
-const LIFF_ID = '2003132696-jZQqpMZ4';
+const LIFF_ID = '2004828199-Le4n8VZV'; // prod
+// const LIFF_ID = '2002126306-rG8n6Bnp'; // dev
 const PROD = true;
 const DOMAIN = "https://test-api.net/";
-// const DOMAIN = "http://localhost:8091/";
+// const DOMAIN = "http://localhost:5000/";
+// const DOMAIN = "https://test.test-api.net/";
 
-// const DOMAIN_UPLOAD = "https://cabsat.easynet.co.th/";
 
-const DOMAIN_UPLOAD = "https://test-api.net/";
-
-const URL_CHECK_USER = DOMAIN+"api/v1/cat-bot/check-user";
-const URL_REGISTER_USER = DOMAIN+"api/v1/cat-bot/register-line-user";
-const URL_UPDATE_LINE_USER = DOMAIN+"api/v1/cat-bot/update-line-user";
-const URL_UPLOAD_SLIP = DOMAIN_UPLOAD+"api/v1/cat-bot/upload-slip";
-const URL_UPLOAD_SLIP_NOT_PASS = DOMAIN_UPLOAD+"api/v1/cat-bot/upload-slip-not-pass";
-const URL_GET_LINE_PROFILE = DOMAIN+"api/v1/cat-bot/line-profile/";
-const URL_GET_SLIP_NOT_PASS = DOMAIN+"api/v1/cat-bot/slip-not-pass/";
-const URL_GET_SLIP = DOMAIN+"api/v1/cat-bot/slip/";
+const URL_UPDATE_ANIMAL_TYPE = DOMAIN+"api/v1/cat-bot/update-animal-type";
 
 var profileTest = {
     userId:'U88ca6af84181b2f92c62f50ab4b5da52',
