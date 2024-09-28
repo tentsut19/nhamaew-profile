@@ -166,20 +166,22 @@ async function getAmphur(e) {
 
     document.getElementById("zipcode").value = "";
 
-    this.countryJson.forEach(element => {
-        if(element[0] == e){
-            console.log(element[1]);
-            this.amphurJson = element[1];
+    if(this.countryJson){
+        this.countryJson.forEach(element => {
+            if(element[0] == e){
+                console.log(element[1]);
+                this.amphurJson = element[1];
 
-            this.amphurJson.forEach(element => {
-                // console.log(element);
-                var option1 = document.createElement("option");
-                option1.text = element[0];
-                option1.value = element[0];
-                amphoeElement.add(option1);
-            });
-        }
-    });
+                this.amphurJson.forEach(element => {
+                    // console.log(element);
+                    var option1 = document.createElement("option");
+                    option1.text = element[0];
+                    option1.value = element[0];
+                    amphoeElement.add(option1);
+                });
+            }
+        });
+    }
 
 }
 
