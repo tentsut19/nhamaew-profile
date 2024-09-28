@@ -197,21 +197,22 @@ async function getThumbon(e) {
     districtElement.add(option);
 
     document.getElementById("zipcode").value = "";
+    if(this.amphurJson){
+        this.amphurJson.forEach(element => {
+            if(element[0] == e){
+                console.log(element[1]);
+                this.thumbonJson = element[1];
 
-    this.amphurJson.forEach(element => {
-        if(element[0] == e){
-            console.log(element[1]);
-            this.thumbonJson = element[1];
-
-            this.thumbonJson.forEach(element => {
-                // console.log(element);
-                var option1 = document.createElement("option");
-                option1.text = element[0];
-                option1.value = element[0];
-                districtElement.add(option1);
-            });
-        }
-    });
+                this.thumbonJson.forEach(element => {
+                    // console.log(element);
+                    var option1 = document.createElement("option");
+                    option1.text = element[0];
+                    option1.value = element[0];
+                    districtElement.add(option1);
+                });
+            }
+        });
+    }
 
 }
 
